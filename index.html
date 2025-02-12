@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description" content="NatureLM is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks.">
+    <meta property="og:title" content="NatureLM: Deciphering the Language of Nature for Scientific Discovery" />
+    <meta property="og:description" content="NatureLM is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks." />
+    <meta property="og:url" content="NatureLM.github.io" />
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <!-- <meta property="og:image" content="static/image/your_banner_image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" /> -->
+
+
+    <meta name="twitter:title" content="NatureLM: Deciphering the Language of Nature for Scientific Discovery">
+    <meta name="twitter:description" content="NatureLM is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks.">
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+    <meta name="twitter:card" content="summary_large_image"> -->
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords"
+        content="Nature Language Model (NatureLM); Generative AI; Biology; Drug Discovery; Material Design">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>NatureLM: Deciphering the Language of Nature for Scientific Discovery</title>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+</head>
+
+<body>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">NatureLM: Deciphering the Language of Nature for
+                            Scientific Discovery</h1>
+                        <div class="is-size-5 publication-authors">
+                            <!-- Paper authors -->
+                            <span class="author-block">NatureLM team </span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">Microsoft Research AI for Science</span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- Arxiv PDF link -->
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/2502.07527 .pdf" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+
+                                <!-- ArXiv abstract Link -->
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2502.07527" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Foundation models have revolutionized natural language processing and artificial
+                            intelligence, significantly enhancing how machines comprehend and generate human languages.
+                            Inspired by the success of these foundation models, researchers have developed foundation
+                            models for individual scientific domains, including small molecules, materials, proteins,
+                            DNA, and RNA. However, these models are typically trained in isolation, lacking the ability
+                            to integrate across different scientific domains. Recognizing that entities within these
+                            domains can all be represented as sequences, which together form the ''language of nature'',
+                            we introduce Nature Language Model (briefly, NatureLM), a sequence-based science foundation
+                            model designed for scientific discovery. Pre-trained with data from multiple scientific
+                            domains, NatureLM offers a unified, versatile model that enables various applications
+                            including: (i) generating and optimizing small molecules, proteins, RNA, and materials using
+                            text instructions; (ii) cross-domain generation/design, such as protein-to-molecule and
+                            protein-to-RNA generation; and (iii) achieving state-of-the-art performance in tasks like
+                            SMILES-to-IUPAC translation and retrosynthesis on USPTO-50k.
+
+                            NatureLM offers a promising generalist approach for various scientific tasks, including drug
+                            discovery (hit generation/optimization, ADMET optimization, synthesis), novel material
+                            design, and the development of therapeutic proteins or nucleotides. We have developed
+                            NatureLM models in different sizes (1 billion, 8 billion, and 46.7 billion parameters) and
+                            observed a clear improvement in performance as the model size increases.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End paper abstract -->
+
+
+    <!-- Image carousel -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container">
+                <div id="results-carousel" class="carousel results-carousel">
+                    <div class="item">
+                        <!-- Your image here -->
+                        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT" />
+                        <h2 class="subtitle has-text-centered">
+                            First image description.
+                        </h2>
+                    </div>
+                    <div class="item">
+                        <!-- Your image here -->
+                        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT" />
+                        <h2 class="subtitle has-text-centered">
+                            Second image description.
+                        </h2>
+                    </div>
+                    <div class="item">
+                        <!-- Your image here -->
+                        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT" />
+                        <h2 class="subtitle has-text-centered">
+                            Third image description.
+                        </h2>
+                    </div>
+                    <div class="item">
+                        <!-- Your image here -->
+                        <img src="static/images/carousel4.jpg" alt="MY ALT TEXT" />
+                        <h2 class="subtitle has-text-centered">
+                            Fourth image description.
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End image carousel -->
+
+
+
+
+    <!-- Youtube video -->
+    <section class="hero is-small is-light">
+        <div class="hero-body">
+            <div class="container">
+                <!-- Paper video. -->
+                <h2 class="title is-3">Video Presentation</h2>
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+
+                        <div class="publication-video">
+                            <!-- Youtube embed code here -->
+                            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0"
+                                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End youtube video -->
+
+
+    <!-- Video carousel -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container">
+                <h2 class="title is-3">Another Carousel</h2>
+                <div id="results-carousel" class="carousel results-carousel">
+                    <div class="item item-video1">
+                        <video poster="" id="video1" autoplay controls muted loop height="100%">
+                            <!-- Your video file here -->
+                            <source src="static/videos/carousel1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-video2">
+                        <video poster="" id="video2" autoplay controls muted loop height="100%">
+                            <!-- Your video file here -->
+                            <source src="static/videos/carousel2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-video3">
+                        <video poster="" id="video3" autoplay controls muted loop height="100%">\
+                            <!-- Your video file here -->
+                            <source src="static/videos/carousel3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End video carousel -->
+
+
+
+    <!-- Paper poster -->
+    <section class="hero is-small is-light">
+        <div class="hero-body">
+            <div class="container">
+                <h2 class="title">Poster</h2>
+
+                <iframe src="static/pdfs/sample.pdf" width="100%" height="550">
+                </iframe>
+
+            </div>
+        </div>
+    </section>
+    <!--End paper poster -->
+
+    <!-- Teaser video-->
+    <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <video poster="" id="tree" autoplay controls muted loop height="100%">
+                    <source src="static/videos/banner_video.mp4" type="video/mp4">
+                </video>
+                <h2 class="subtitle has-text-centered">
+                    Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at,
+                    placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut
+                    maximus.
+                </h2>
+            </div>
+        </div>
+    </section>
+    <!-- End Teaser video-->
+
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@misc{naturelm2025,
+    title={NatureLM: Deciphering the Language of Nature for Scientific Discovery}, 
+    author={Yingce Xia and Peiran Jin and Shufang Xie and Liang He and Chuan Cao and Renqian Luo and Guoqing Liu and Yue Wang and Zequn Liu and Yuan-Jyue Chen and Zekun Guo and Yeqi Bai and Pan Deng and Yaosen Min and Ziheng Lu and Hongxia Hao and Han Yang and Jielan Li and Chang Liu and Jia Zhang and Jianwei Zhu and Kehan Wu and Wei Zhang and Kaiyuan Gao and Qizhi Pei and Qian Wang and Xixian Liu and Yanting Li and Houtian Zhu and Yeqing Lu and Mingqian Ma and Zun Wang and Tian Xie and Krzysztof Maziarz and Marwin Segler and Zhao Yang and Zilong Chen and Yu Shi and Shuxin Zheng and Lijun Wu and Chen Hu and Peggy Dai and Tie-Yan Liu and Haiguang Liu and Tao Qin},
+    year={2025},
+    eprint={2502.07527},
+    archivePrefix={arXiv},
+    primaryClass={cs.AI},
+    url={https://arxiv.org/abs/2502.07527}, 
+}</code></pre>
+        </div>
+    </section>
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                            You are free to borrow the source code of this website, we just ask that you link back to
+                            this page in the footer. <br> This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- End teaser video
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
