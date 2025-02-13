@@ -212,70 +212,70 @@
                 <!-- New examples start here -->
                 <div class="box">
                     <h3 class="title is-5">Protein sequence to full molecule design (Section 3.4)</h3>
-                    <p><strong>Instruction:</strong> Produce a compound guided by the target.</p>
-                    &lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt;
-                    <p><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
+                    <p class="break-word"><strong>Instruction:</strong> Produce a compound guided by the target.
+                    &lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt; </p>
+                    <p class="break-word"><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Protein sequence to molecular fragment generation (Section 3.4)</h3>
-                    <p><strong>Instruction:</strong> Design a compound with reference to the target &lt;protein&gt;DTKEQRILR….EKAIYQGP&lt;/protein&gt; and the fragment &lt;fragA&gt; O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12 &lt;/fragA&gt;.</p>
-                    <p><strong>Response:</strong> &lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</p>
+                    <p class="break-word"><strong>Instruction:</strong> Design a compound with reference to the target &lt;protein&gt;DTKEQRILR….EKAIYQGP&lt;/protein&gt; and the fragment &lt;fragA&gt; O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12 &lt;/fragA&gt;.</p>
+                    <p class="break-word"><strong>Response:</strong> &lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</p>
                     <p>Here, ''[*:digit]'' refers to the connection point of the molecular fragment.</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Binding affinity improvement (Section 3.5)</h3>
-                    <p><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
-                    <p><strong>Response:</strong> &lt;mol&gt;Cc1ccc(-c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
+                    <p class="break-word"><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
+                    <p class="break-word"><strong>Response:</strong> &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Metabolism optimization (Section 3.6)</h3>
-                    <p><strong>Instruction:</strong> Transform &lt;mol&gt;COCCn1c(=O)c(-c2ccccc2)nc2cnc(N3CCOCC3)nc21&lt;/mol&gt; to yield lower CYP1A2 inhibition and present a better metabolic safety record.</p>
-                    <p><strong>Response:</strong> &lt;mol&gt;COc1ccc(-c2nc3cnc(N4CCOCC4)nc3n(Cc3cccc(OC)c3)c2=O)cc1&lt;/mol&gt;</p>
+                    <p class="break-word"><strong>Instruction:</strong> Transform &lt;mol&gt;COCCn1c(=O)c(-c2ccccc2)nc2cnc(N3CCOCC3)nc21&lt;/mol&gt; to yield lower CYP1A2 inhibition and present a better metabolic safety record.</p>
+                    <p class="break-word"><strong>Response:</strong> &lt;mol&gt;COc1ccc(&#8209;c2nc3cnc(N4CCOCC4)nc3n(Cc3cccc(OC)c3)c2=O)cc1&lt;/mol&gt;</p>
                     <p>You can replace CYP to the enzymes you wish as input.</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Reaction prediction (Section 3.7)</h3>
-                    <p><strong>Instruction:</strong> Please suggest possible reactants for the given product</p>
-                    <p>&lt;product&gt;CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1&lt;/product&gt;.</p>
+                    <p class="break-word"><strong>Instruction:</strong> Please suggest possible reactants for the given product</p>
+                    <p class="break-word">&lt;product&gt;CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1&lt;/product&gt;.</p>
                     <p><strong>Response:</strong> &lt;reactant&gt;CC(=O)c1ccc2[nH]ccc2c1.CC(C)(C)OC(=O)OC(=O)OC(C)(C)C&lt;/reactant&gt;</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Protein generation (Section 4.2)</h3>
-                    <p><strong>Instruction:</strong> I require a stable protein sequence, kindly generate one.</p>
-                    <p><strong>Response:</strong>&lt;protein&gt;GSVEVKIGTDRTTASSQDEAEERARRAGARRVRIDGNEVEVEM&lt;/protein&gt;</p>
+                    <p class="break-word"><strong>Instruction:</strong> I require a stable protein sequence, kindly generate one.</p>
+                    <p class="break-word"><strong>Response:</strong>&lt;protein&gt;GSVEVKIGTDRTTASSQDEAEERARRAGARRVRIDGNEVEVEM&lt;/protein&gt;</p>
                     <hr>
-                    <p><strong>Instruction:</strong> Generate a soluble protein sequence.</p>
+                    <p class="break-word"><strong>Instruction:</strong> Generate a soluble protein sequence.</p>
                     <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MSLPNIFVEELVHTPIEKQVIEIVERKGIGHPDSLADGMAEAMSRELSREYIRRFGAVLHHNTDETQIVAGRSNPQFGGGEVIEPIYVLLVGRATKFFNGEYIPTDKIALKAARDYIRQHMQNLDPELDVVFNVRLGEGSTDLQDVFRRKSGNVALANDTSFGIGFAPLSETERLVFNVERRIYEEFRKKNPAIGEDVKVMGLREKDRISLTIAAAFVDRYVANIKEYDAIKEELENFVKEISSEYTEREVEVFVNTADDYETGCVYLTVTGTSAENGDDGSVGRGNRCNGLITPGRPMSMEASSGKNPINHVGKIYNLLANQIAARIAEEVEGVEEVYVRILSQIGKPINEPKALSVQVIPKSGYDISKLERPARDIAEEMIANVGKITDMVIEGKVRTFEGHHHHHH&lt;/protein&gt;</p>
                     <hr>
-                    <p><strong>Instruction:</strong> Produce a protein sequence that is not soluble.</p>
+                    <p class="break-word"><strong>Instruction:</strong> Produce a protein sequence that is not soluble.</p>
                     <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MAFLSQLQGGFAQLKQKAEAAAPSIADSLNQLKEAPKFMESAFKTGLNKVKLDSLGKVLNVPSLGRTQSPIDIVPVITAFGEHLQNAHFEVTYESTGEFKAVNDGNSIWLMREGNSSELAISFLPEEQYHLDAVNFHWATEPMNGSEHTIGGVGYAGEMHLIHRNTRFATMADALKQPNGVIAIAVFLNESHDDNAVFSPLINLLPQVIYKGSECKLCSFDFQTFFPVAEKTKEFWMYEGSETTDPFRETVNWIVIRAALPISSHQLDKLREVRAGRYDEEFSDKVPMKPLRPIQNPSSRTIQSSFRSVAGAPDLGFRQ&lt;/protein&gt;</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Antibody design and optimization (Section 4.3)</h3>
-                    <p><strong>Instruction:</strong> Using antigen &lt;protein&gt;TQVCTGTDMKLR…GESSEDCQS&lt;/protein&gt; and antibody frameworks &lt;antibody&gt; IVLTQTPS…LAVYYC&lt;/antibody&gt; and &lt;antibody&gt;FGGGTRLEIEVQ&lt;/antibody&gt;, create the CDR3 regions.</p>
-                    <p><strong>Response:</strong> &lt;antibody&gt;QQYSNYPWT&lt;/antibody&gt;</p>
+                    <p class="break-word"><strong>Instruction:</strong> Using antigen &lt;protein&gt;TQVCTGTDMKLR…GESSEDCQS&lt;/protein&gt; and antibody frameworks &lt;antibody&gt; IVLTQTPS…LAVYYC&lt;/antibody&gt; and &lt;antibody&gt;FGGGTRLEIEVQ&lt;/antibody&gt;, create the CDR3 regions.</p>
+                    <p class="break-word"><strong>Response:</strong> &lt;antibody&gt;QQYSNYPWT&lt;/antibody&gt;</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Composition to material generation (Section 5.2)</h3>
-                    <p><strong>Instruction:</strong> Build a material that has Li, Ti, Mn, Fe, O.</p>
-                    <p><strong>Response:</strong> &lt;material&gt; Li Li Li Li Ti Ti Ti Mn Mn Fe Fe Fe O O O O O O O O O O O O O O O O &lt;sg8&gt; &lt;/material&gt;</p>
+                    <p class="break-word"><strong>Instruction:</strong> Build a material that has Li, Ti, Mn, Fe, O.</p>
+                    <p class="break-word"><strong>Response:</strong> &lt;material&gt; Li Li Li Li Ti Ti Ti Mn Mn Fe Fe Fe O O O O O O O O O O O O O O O O &lt;sg8&gt; &lt;/material&gt;</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Material generation with given bulk modulus (Section 5.3)</h3>
-                    <p><strong>Instruction:</strong> Construct the composition for a material with a specified bulk modulus of 86.39 GPa.</p>
-                    <p><strong>Response:</strong> &lt;material&gt; Se Se Pd Sc &lt;sg164&gt; &lt;/material&gt;</p>
+                    <p class="break-word"><strong>Instruction:</strong> Construct the composition for a material with a specified bulk modulus of 86.39 GPa.</p>
+                    <p class="break-word"><strong>Response:</strong> &lt;material&gt; Se Se Pd Sc &lt;sg164&gt; &lt;/material&gt;</p>
                     <p>Design material with given bulk modulus.</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Guide RNA design (Section 6.2)</h3>
-                    <p><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence.</p>
+                    <p class="break-word"><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence.</p>
                     <p>&lt;dna&gt;GACTGGCACCAG…CCCTCGC&lt;/dna&gt;</p>
-                    <p><strong>Response:</strong> &lt;rna&gt;AGACACAGCGGGTGCTCTGC&lt;/rna&gt;</p>
+                    <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AGACACAGCGGGTGCTCTGC&lt;/rna&gt;</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Protein binding RNA design (Section 6.3)</h3>
-                    <p><strong>Instructions:</strong> Given &lt;protein&gt;MSEY…SSGWGM&lt;/protein&gt;, create an RNA molecule that binds to it.</p>
-                    <p><strong>Response:</strong> &lt;rna&gt;AAACAGG…CGTACGACA&lt;/rna&gt;</p>
+                    <p class="break-word"><strong>Instructions:</strong> Given &lt;protein&gt;MSEY…SSGWGM&lt;/protein&gt;, create an RNA molecule that binds to it.</p>
+                    <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AAACAGG…CGTACGACA&lt;/rna&gt;</p>
                 </div>
                 <!-- New examples end here -->
             </div>
