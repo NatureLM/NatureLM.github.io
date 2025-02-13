@@ -36,6 +36,16 @@
     <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link rel="stylesheet" href="static/css/index.css">
+    
+    <style>
+        .break-word {
+            word-wrap: break-word; /* For older browsers */
+            overflow-wrap: break-word; /* Modern standard */
+            white-space: normal; /* Ensure text can wrap */
+            word-break: break-word;
+            hyphens: manual;
+        }
+    </style>
 
     <!--Azure Application Insigts-->
     <script type="text/javascript">
@@ -203,7 +213,7 @@
                 <div class="box">
                     <h3 class="title is-5">Protein sequence to full molecule design (Section 3.4)</h3>
                     <p><strong>Instruction:</strong> Produce a compound guided by the target.</p>
-                    <p>&lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt;</p>
+                    &lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt;
                     <p><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
                 </div>
                 <div class="box">
@@ -214,7 +224,7 @@
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Binding affinity improvement (Section 3.5)</h3>
-                    <p><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(-c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
+                    <p><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
                     <p><strong>Response:</strong> &lt;mol&gt;Cc1ccc(-c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
                 </div>
                 <div class="box">
@@ -232,9 +242,13 @@
                 <div class="box">
                     <h3 class="title is-5">Protein generation (Section 4.2)</h3>
                     <p><strong>Instruction:</strong> I require a stable protein sequence, kindly generate one.</p>
+                    <p><strong>Response:</strong>&lt;protein&gt;GSVEVKIGTDRTTASSQDEAEERARRAGARRVRIDGNEVEVEM&lt;/protein&gt;</p>
+                    <hr>
                     <p><strong>Instruction:</strong> Generate a soluble protein sequence.</p>
+                    <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MSLPNIFVEELVHTPIEKQVIEIVERKGIGHPDSLADGMAEAMSRELSREYIRRFGAVLHHNTDETQIVAGRSNPQFGGGEVIEPIYVLLVGRATKFFNGEYIPTDKIALKAARDYIRQHMQNLDPELDVVFNVRLGEGSTDLQDVFRRKSGNVALANDTSFGIGFAPLSETERLVFNVERRIYEEFRKKNPAIGEDVKVMGLREKDRISLTIAAAFVDRYVANIKEYDAIKEELENFVKEISSEYTEREVEVFVNTADDYETGCVYLTVTGTSAENGDDGSVGRGNRCNGLITPGRPMSMEASSGKNPINHVGKIYNLLANQIAARIAEEVEGVEEVYVRILSQIGKPINEPKALSVQVIPKSGYDISKLERPARDIAEEMIANVGKITDMVIEGKVRTFEGHHHHHH&lt;/protein&gt;</p>
+                    <hr>
                     <p><strong>Instruction:</strong> Produce a protein sequence that is not soluble.</p>
-                    <p>The model can output the corresponding fasta sequences.</p>
+                    <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MAFLSQLQGGFAQLKQKAEAAAPSIADSLNQLKEAPKFMESAFKTGLNKVKLDSLGKVLNVPSLGRTQSPIDIVPVITAFGEHLQNAHFEVTYESTGEFKAVNDGNSIWLMREGNSSELAISFLPEEQYHLDAVNFHWATEPMNGSEHTIGGVGYAGEMHLIHRNTRFATMADALKQPNGVIAIAVFLNESHDDNAVFSPLINLLPQVIYKGSECKLCSFDFQTFFPVAEKTKEFWMYEGSETTDPFRETVNWIVIRAALPISSHQLDKLREVRAGRYDEEFSDKVPMKPLRPIQNPSSRTIQSSFRSVAGAPDLGFRQ&lt;/protein&gt;</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Antibody design and optimization (Section 4.3)</h3>
