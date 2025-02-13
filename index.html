@@ -196,25 +196,25 @@
                 <div class="box">
                     <h3 class="title is-5">Generate molecule with given text compound properties (Section 3.2) </h3>
                     <p><strong>Instruction:</strong> Generate a molecule with four hydrogen bond donors.</p>
-                    <p><strong>Model Output:</strong> <span>C(C[C@@H](C(=O)O)N)CN=C(N)N</span> </p>
+                    <p><strong>Response:</strong> <span>C(C[C@@H](C(=O)O)N)CN=C(N)N</span> </p>
                     <p>One can replace `four hydrogen bonds ` to other properties like `QED 0.5`, `TPSA 90`, `three hydrogen bond donors`, etc.</p>
                 </div>
                 <!-- New examples start here -->
                 <div class="box">
                     <h3 class="title is-5">Protein sequence to full molecule design (Section 3.4)</h3>
-                    <p><strong>Instruction:</strong> Produce a compound guided by the target</p>
+                    <p><strong>Instruction:</strong> Produce a compound guided by the target.</p>
                     <p>&lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt;</p>
                     <p><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Protein sequence to molecular fragment generation (Section 3.4)</h3>
-                    <p><strong>Instruction:</strong> Design a compound with reference to the target &lt;protein&gt;DTKEQRILR….EKAIYQGP&lt;/protein&gt; and the fragment &lt;fragA&gt; O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12 &lt;/fragA&gt;</p>
+                    <p><strong>Instruction:</strong> Design a compound with reference to the target &lt;protein&gt;DTKEQRILR….EKAIYQGP&lt;/protein&gt; and the fragment &lt;fragA&gt; O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12 &lt;/fragA&gt;.</p>
                     <p><strong>Response:</strong> &lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</p>
                     <p>Here, ''[*:digit]'' refers to the connection point of the molecular fragment.</p>
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Binding affinity improvement (Section 3.5)</h3>
-                    <p><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(-c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
+                    <p><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(-c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
                     <p><strong>Response:</strong> &lt;mol&gt;Cc1ccc(-c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
                 </div>
                 <div class="box">
@@ -226,7 +226,7 @@
                 <div class="box">
                     <h3 class="title is-5">Reaction prediction (Section 3.7)</h3>
                     <p><strong>Instruction:</strong> Please suggest possible reactants for the given product</p>
-                    <p>&lt;product&gt;CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1&lt;/product&gt;</p>
+                    <p>&lt;product&gt;CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1&lt;/product&gt;.</p>
                     <p><strong>Response:</strong> &lt;reactant&gt;CC(=O)c1ccc2[nH]ccc2c1.CC(C)(C)OC(=O)OC(=O)OC(C)(C)C&lt;/reactant&gt;</p>
                 </div>
                 <div class="box">
@@ -243,7 +243,7 @@
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Composition to material generation (Section 5.2)</h3>
-                    <p><strong>Instruction:</strong> Build a material that has Li, Ti, Mn, Fe, O</p>
+                    <p><strong>Instruction:</strong> Build a material that has Li, Ti, Mn, Fe, O.</p>
                     <p><strong>Response:</strong> &lt;material&gt; Li Li Li Li Ti Ti Ti Mn Mn Fe Fe Fe O O O O O O O O O O O O O O O O &lt;sg8&gt; &lt;/material&gt;</p>
                 </div>
                 <div class="box">
@@ -254,7 +254,7 @@
                 </div>
                 <div class="box">
                     <h3 class="title is-5">Guide RNA design (Section 6.2)</h3>
-                    <p><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence</p>
+                    <p><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence.</p>
                     <p>&lt;dna&gt;GACTGGCACCAG…CCCTCGC&lt;/dna&gt;</p>
                     <p><strong>Response:</strong> &lt;rna&gt;AGACACAGCGGGTGCTCTGC&lt;/rna&gt;</p>
                 </div>
