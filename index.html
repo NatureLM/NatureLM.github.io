@@ -45,22 +45,91 @@
             word-break: break-word;
             hyphens: manual;
         }
+        .toc-container {
+            position: fixed;
+            width: 230px; /* Slightly increased width to accommodate bullets */
+            z-index: 100;
+            display: none; /* Initially hidden, JavaScript will show it */
+        }
+        .toc {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-height: 80vh; /* Limit height to 80% of viewport height */
+            overflow-y: auto; /* Add scrollbar if content is too tall */
+        }
+        .examples-section {
+            padding-left: 250px; /* Increased to match wider TOC */
+        }
+        /* Adjustments for the content area to avoid overlap */
+        .examples-content {
+            width: 100%;
+        }
+        /* For smaller screens, revert to normal layout */
+        @media (max-width: 768px) {
+            .toc-container {
+                position: static;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .examples-section {
+                padding-left: 0;
+            }
+        }
+        /* Style for TOC list items to add bullet points */
+        .toc ul {
+            list-style-type: disc;
+            padding-left: 15px; /* Reduced padding to prevent horizontal scrollbar */
+            margin-left: 0;
+        }
+        .toc ul li {
+            margin-bottom: 5px;
+            font-size: 0.95em; /* Slightly smaller font size */
+        }
     </style>
 
-    <!--Azure Application Insigts-->
-    <script type="text/javascript">
-        !(function (cfg){function e(){cfg.onInit&&cfg.onInit(n)}var x,w,D,t,E,n,C=window,O=document,b=C.location,q="script",I="ingestionendpoint",L="disableExceptionTracking",j="ai.device.";"instrumentationKey"[x="toLowerCase"](),w="crossOrigin",D="POST",t="appInsightsSDK",E=cfg.name||"appInsights",(cfg.name||C[t])&&(C[t]=E),n=C[E]||function(g){var f=!1,m=!1,h={initialize:!0,queue:[],sv:"8",version:2,config:g};function v(e,t){var n={},i="Browser";function a(e){e=""+e;return 1===e.length?"0"+e:e}return n[j+"id"]=i[x](),n[j+"type"]=i,n["ai.operation.name"]=b&&b.pathname||"_unknown_",n["ai.internal.sdkVersion"]="javascript:snippet_"+(h.sv||h.version),{time:(i=new Date).getUTCFullYear()+"-"+a(1+i.getUTCMonth())+"-"+a(i.getUTCDate())+"T"+a(i.getUTCHours())+":"+a(i.getUTCMinutes())+":"+a(i.getUTCSeconds())+"."+(i.getUTCMilliseconds()/1e3).toFixed(3).slice(2,5)+"Z",iKey:e,name:"Microsoft.ApplicationInsights."+e.replace(/-/g,"")+"."+t,sampleRate:100,tags:n,data:{baseData:{ver:2}},ver:undefined,seq:"1",aiDataContract:undefined}}var n,i,t,a,y=-1,T=0,S=["js.monitor.azure.com","js.cdn.applicationinsights.io","js.cdn.monitor.azure.com","js0.cdn.applicationinsights.io","js0.cdn.monitor.azure.com","js2.cdn.applicationinsights.io","js2.cdn.monitor.azure.com","az416426.vo.msecnd.net"],o=g.url||cfg.src,r=function(){return s(o,null)};function s(d,t){if((n=navigator)&&(~(n=(n.userAgent||"").toLowerCase()).indexOf("msie")||~n.indexOf("trident/"))&&~d.indexOf("ai.3")&&(d=d.replace(/(\/)(ai\.3\.)([^\d]*)$/,function(e,t,n){return t+"ai.2"+n})),!1!==cfg.cr)for(var e=0;e<S.length;e++)if(0<d.indexOf(S[e])){y=e;break}var n,i=function(e){var a,t,n,i,o,r,s,c,u,l;h.queue=[],m||(0<=y&&T+1<S.length?(a=(y+T+1)%S.length,p(d.replace(/^(.*\/\/)([\w\.]*)(\/.*)$/,function(e,t,n,i){return t+S[a]+i})),T+=1):(f=m=!0,s=d,!0!==cfg.dle&&(c=(t=function(){var e,t={},n=g.connectionString;if(n)for(var i=n.split(";"),a=0;a<i.length;a++){var o=i[a].split("=");2===o.length&&(t[o[0][x]()]=o[1])}return t[I]||(e=(n=t.endpointsuffix)?t.location:null,t[I]="https://"+(e?e+".":"")+"dc."+(n||"services.visualstudio.com")),t}()).instrumentationkey||g.instrumentationKey||"",t=(t=(t=t[I])&&"/"===t.slice(-1)?t.slice(0,-1):t)?t+"/v2/track":g.endpointUrl,t=g.userOverrideEndpointUrl||t,(n=[]).push((i="SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)",o=s,u=t,(l=(r=v(c,"Exception")).data).baseType="ExceptionData",l.baseData.exceptions=[{typeName:"SDKLoadFailed",message:i.replace(/\./g,"-"),hasFullStack:!1,stack:i+"\nSnippet failed to load ["+o+"] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: "+(b&&b.pathname||"_unknown_")+"\nEndpoint: "+u,parsedStack:[]}],r)),n.push((l=s,i=t,(u=(o=v(c,"Message")).data).baseType="MessageData",(r=u.baseData).message='AI (Internal): 99 message:"'+("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) ("+l+")").replace(/\"/g,"")+'"',r.properties={endpoint:i},o)),s=n,c=t,JSON&&((u=C.fetch)&&!cfg.useXhr?u(c,{method:D,body:JSON.stringify(s),mode:"cors"}):XMLHttpRequest&&((l=new XMLHttpRequest).open(D,c),l.setRequestHeader("Content-type","application/json"),l.send(JSON.stringify(s)))))))},a=function(e,t){m||setTimeout(function(){!t&&h.core||i()},500),f=!1},p=function(e){var n=O.createElement(q),e=(n.src=e,t&&(n.integrity=t),n.setAttribute("data-ai-name",E),cfg[w]);return!e&&""!==e||"undefined"==n[w]||(n[w]=e),n.onload=a,n.onerror=i,n.onreadystatechange=function(e,t){"loaded"!==n.readyState&&"complete"!==n.readyState||a(0,t)},cfg.ld&&cfg.ld<0?O.getElementsByTagName("head")[0].appendChild(n):setTimeout(function(){O.getElementsByTagName(q)[0].parentNode.appendChild(n)},cfg.ld||0),n};p(d)}cfg.sri&&(n=o.match(/^((http[s]?:\/\/.*\/)\w+(\.\d+){1,5})\.(([\w]+\.){0,2}js)$/))&&6===n.length?(d="".concat(n[1],".integrity.json"),i="@".concat(n[4]),l=window.fetch,t=function(e){if(!e.ext||!e.ext[i]||!e.ext[i].file)throw Error("Error Loading JSON response");var t=e.ext[i].integrity||null;s(o=n[2]+e.ext[i].file,t)},l&&!cfg.useXhr?l(d,{method:"GET",mode:"cors"}).then(function(e){return e.json()["catch"](function(){return{}})}).then(t)["catch"](r):XMLHttpRequest&&((a=new XMLHttpRequest).open("GET",d),a.onreadystatechange=function(){if(a.readyState===XMLHttpRequest.DONE)if(200===a.status)try{t(JSON.parse(a.responseText))}catch(e){r()}else r()},a.send())):o&&r();try{h.cookie=O.cookie}catch(k){}function e(e){for(;e.length;)!function(t){h[t]=function(){var e=arguments;f||h.queue.push(function(){h[t].apply(h,e)})}}(e.pop())}var c,u,l="track",d="TrackPage",p="TrackEvent",l=(e([l+"Event",l+"PageView",l+"Exception",l+"Trace",l+"DependencyData",l+"Metric",l+"PageViewPerformance","start"+d,"stop"+d,"start"+p,"stop"+p,"addTelemetryInitializer","setAuthenticatedUserContext","clearAuthenticatedUserContext","flush"]),h.SeverityLevel={Verbose:0,Information:1,Warning:2,Error:3,Critical:4},(g.extensionConfig||{}).ApplicationInsightsAnalytics||{});return!0!==g[L]&&!0!==l[L]&&(e(["_"+(c="onerror")]),u=C[c],C[c]=function(e,t,n,i,a){var o=u&&u(e,t,n,i,a);return!0!==o&&h["_"+c]({message:e,url:t,lineNumber:n,columnNumber:i,error:a,evt:C.event}),o},g.autoExceptionInstrumented=!0),h}(cfg.cfg),(C[E]=n).queue&&0===n.queue.length?(n.queue.push(e),n.trackPageView({})):e();})({
-          src: "https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js",
-          // name: "appInsights", // Global SDK Instance name defaults to "appInsights" when not supplied
-          // ld: 0, // Defines the load delay (in ms) before attempting to load the sdk. -1 = block page load and add to head. (default) = 0ms load after timeout,
-          // useXhr: 1, // Use XHR instead of fetch to report failures (if available),
-          // dle: true, // Prevent the SDK from reporting load failure log
-          crossOrigin: "anonymous", // When supplied this will add the provided value as the cross origin attribute on the script tag
-          // onInit: null, // Once the application insights instance has loaded and initialized this callback function will be called with 1 argument -- the sdk instance (DON'T ADD anything to the sdk.queue -- As they won't get called)
-          // sri: false, // Custom optional value to specify whether fetching the snippet from integrity file and do integrity check
-          cfg: { // Application Insights Configuration
-            connectionString: "InstrumentationKey=4c9c654c-a3d7-4076-acce-77298d785176;IngestionEndpoint=https://westus3-1.in.applicationinsights.azure.com/;ApplicationId=6cebef72-3b7e-44e3-9648-187ea23533e4"
-        }});
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocContainer = document.querySelector('.toc-container');
+            const examplesSection = document.querySelector('.examples-section');
+            const examplesHeading = document.querySelector('#examples-heading');
+            
+            function updateTOCPosition() {
+                // Get the position of the Examples heading
+                const headingRect = examplesHeading.getBoundingClientRect();
+                
+                // Check if any part of the examples section is in view
+                const examplesSectionRect = examplesSection.getBoundingClientRect();
+                const isExamplesVisible = 
+                    examplesSectionRect.top < window.innerHeight && 
+                    examplesSectionRect.bottom > 0;
+                
+                if (isExamplesVisible) {
+                    tocContainer.style.display = 'block';
+                    
+                    // Calculate the position for the TOC container
+                    // If the heading is in view, align TOC with it
+                    if (headingRect.top > 0) {
+                        tocContainer.style.top = headingRect.top + 'px';
+                        tocContainer.style.left = '20px';
+                    } else {
+                        // If heading is scrolled out of view (above viewport), set TOC to fixed position
+                        tocContainer.style.top = '20px';
+                        tocContainer.style.left = '20px';
+                    }
+                } else {
+                    tocContainer.style.display = 'none';
+                }
+            }
+            
+            // Update on scroll
+            window.addEventListener('scroll', updateTOCPosition);
+            window.addEventListener('resize', updateTOCPosition);
+            
+            // Initial positioning
+            updateTOCPosition();
+        });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -198,86 +267,107 @@
 
 
     <!-- Examples   -->
-    <section class="section">
-        <div class="container is-max-desktop">
-            <h2 class="title">Examples</h2>
-            <div class="content">
-                <p>Researchers can utilize the instructions provided to interact with NatureLM.</p>
-                <div class="box">
-                    <h3 class="title is-5">Generate molecule with given text compound properties (Section 3.2) </h3>
-                    <p><strong>Instruction:</strong> Generate a molecule with four hydrogen bond donors.</p>
-                    <p><strong>Response:</strong> <span>C(C[C@@H](C(=O)O)N)CN=C(N)N</span> </p>
-                    <p>One can replace `four hydrogen bonds ` to other properties like `QED 0.5`, `TPSA 90`, `three hydrogen bond donors`, etc.</p>
+    <section class="section examples-section" id="examples">
+        <div class="toc-container">
+            <div class="toc">
+                <h3 class="title is-5">Table of Contents</h3>
+                <ul>
+                    <li><a href="#example1">Generate molecule with given text compound properties</a></li>
+                    <li><a href="#example2">Protein sequence to full molecule design</a></li>
+                    <li><a href="#example3">Protein sequence to molecular fragment generation</a></li>
+                    <li><a href="#example4">Binding affinity improvement</a></li>
+                    <li><a href="#example5">Metabolism optimization</a></li>
+                    <li><a href="#example6">Reaction prediction</a></li>
+                    <li><a href="#example7">Protein generation</a></li>
+                    <li><a href="#example8">Antibody design and optimization</a></li>
+                    <li><a href="#example9">Composition to material generation</a></li>
+                    <li><a href="#example10">Material generation with given bulk modulus</a></li>
+                    <li><a href="#example11">Guide RNA design</a></li>
+                    <li><a href="#example12">Protein binding RNA design</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="examples-content">
+            <div class="container is-max-desktop">
+                <h2 class="title" id="examples-heading">Examples</h2>
+                <div class="content">
+                    <p>Researchers can utilize the instructions provided to interact with NatureLM.</p>
+                    <div class="box" id="example1">
+                        <h3 class="title is-5">Generate molecule with given text compound properties (Section 3.2) </h3>
+                        <p><strong>Instruction:</strong> Generate a molecule with four hydrogen bond donors.</p>
+                        <p><strong>Response:</strong> <span>C(C[C@@H](C(=O)O)N)CN=C(N)N</span> </p>
+                        <p>One can replace `four hydrogen bonds ` to other properties like `QED 0.5`, `TPSA 90`, `three hydrogen bond donors`, etc.</p>
+                    </div>
+                    <!-- New examples start here -->
+                    <div class="box" id="example2">
+                        <h3 class="title is-5">Protein sequence to full molecule design (Section 3.4)</h3>
+                        <p class="break-word"><strong>Instruction:</strong> Produce a compound guided by the target.
+                        &lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt; </p>
+                        <p class="break-word"><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
+                    </div>
+                    <div class="box" id="example3">
+                        <h3 class="title is-5">Protein sequence to molecular fragment generation (Section 3.4)</h3>
+                        <p class="break-word"><strong>Instruction:</strong> Design a compound with reference to the target &lt;protein&gt;DTKEQRILR….EKAIYQGP&lt;/protein&gt; and the fragment &lt;fragA&gt; O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12 &lt;/fragA&gt;.</p>
+                        <p class="break-word"><strong>Response:</strong> &lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</p>
+                        <p>Here, ''[*:digit]'' refers to the connection point of the molecular fragment.</p>
+                    </div>
+                    <div class="box" id="example4">
+                        <h3 class="title is-5">Binding affinity improvement (Section 3.5)</h3>
+                        <p class="break-word"><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
+                        <p class="break-word"><strong>Response:</strong> &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
+                    </div>
+                    <div class="box" id="example5">
+                        <h3 class="title is-5">Metabolism optimization (Section 3.6)</h3>
+                        <p class="break-word"><strong>Instruction:</strong> Transform &lt;mol&gt;COCCn1c(=O)c(-c2ccccc2)nc2cnc(N3CCOCC3)nc21&lt;/mol&gt; to yield lower CYP1A2 inhibition and present a better metabolic safety record.</p>
+                        <p class="break-word"><strong>Response:</strong> &lt;mol&gt;COc1ccc(&#8209;c2nc3cnc(N4CCOCC4)nc3n(Cc3cccc(OC)c3)c2=O)cc1&lt;/mol&gt;</p>
+                        <p>You can replace CYP to the enzymes you wish as input.</p>
+                    </div>
+                    <div class="box" id="example6">
+                        <h3 class="title is-5">Reaction prediction (Section 3.7)</h3>
+                        <p class="break-word"><strong>Instruction:</strong> Please suggest possible reactants for the given product</p>
+                        <p class="break-word">&lt;product&gt;CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1&lt;/product&gt;.</p>
+                        <p><strong>Response:</strong> &lt;reactant&gt;CC(=O)c1ccc2[nH]ccc2c1.CC(C)(C)OC(=O)OC(=O)OC(C)(C)C&lt;/reactant&gt;</p>
+                    </div>
+                    <div class="box" id="example7">
+                        <h3 class="title is-5">Protein generation (Section 4.2)</h3>
+                        <p class="break-word"><strong>Instruction:</strong> I require a stable protein sequence, kindly generate one.</p>
+                        <p class="break-word"><strong>Response:</strong>&lt;protein&gt;GSVEVKIGTDRTTASSQDEAEERARRAGARRVRIDGNEVEVEM&lt;/protein&gt;</p>
+                        <hr>
+                        <p class="break-word"><strong>Instruction:</strong> Generate a soluble protein sequence.</p>
+                        <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MSLPNIFVEELVHTPIEKQVIEIVERKGIGHPDSLADGMAEAMSRELSREYIRRFGAVLHHNTDETQIVAGRSNPQFGGGEVIEPIYVLLVGRATKFFNGEYIPTDKIALKAARDYIRQHMQNLDPELDVVFNVRLGEGSTDLQDVFRRKSGNVALANDTSFGIGFAPLSETERLVFNVERRIYEEFRKKNPAIGEDVKVMGLREKDRISLTIAAAFVDRYVANIKEYDAIKEELENFVKEISSEYTEREVEVFVNTADDYETGCVYLTVTGTSAENGDDGSVGRGNRCNGLITPGRPMSMEASSGKNPINHVGKIYNLLANQIAARIAEEVEGVEEVYVRILSQIGKPINEPKALSVQVIPKSGYDISKLERPARDIAEEMIANVGKITDMVIEGKVRTFEGHHHHHH&lt;/protein&gt;</p>
+                        <hr>
+                        <p class="break-word"><strong>Instruction:</strong> Produce a protein sequence that is not soluble.</p>
+                        <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MAFLSQLQGGFAQLKQKAEAAAPSIADSLNQLKEAPKFMESAFKTGLNKVKLDSLGKVLNVPSLGRTQSPIDIVPVITAFGEHLQNAHFEVTYESTGEFKAVNDGNSIWLMREGNSSELAISFLPEEQYHLDAVNFHWATEPMNGSEHTIGGVGYAGEMHLIHRNTRFATMADALKQPNGVIAIAVFLNESHDDNAVFSPLINLLPQVIYKGSECKLCSFDFQTFFPVAEKTKEFWMYEGSETTDPFRETVNWIVIRAALPISSHQLDKLREVRAGRYDEEFSDKVPMKPLRPIQNPSSRTIQSSFRSVAGAPDLGFRQ&lt;/protein&gt;</p>
+                    </div>
+                    <div class="box" id="example8">
+                        <h3 class="title is-5">Antibody design and optimization (Section 4.3)</h3>
+                        <p class="break-word"><strong>Instruction:</strong> Using antigen &lt;protein&gt;TQVCTGTDMKLR…GESSEDCQS&lt;/protein&gt; and antibody frameworks &lt;antibody&gt; IVLTQTPS…LAVYYC&lt;/antibody&gt; and &lt;antibody&gt;FGGGTRLEIEVQ&lt;/antibody&gt;, create the CDR3 regions.</p>
+                        <p class="break-word"><strong>Response:</strong> &lt;antibody&gt;QQYSNYPWT&lt;/antibody&gt;</p>
+                    </div>
+                    <div class="box" id="example9">
+                        <h3 class="title is-5">Composition to material generation (Section 5.2)</h3>
+                        <p class="break-word"><strong>Instruction:</strong> Build a material that has Li, Ti, Mn, Fe, O.</p>
+                        <p class="break-word"><strong>Response:</strong> &lt;material&gt; Li Li Li Li Ti Ti Ti Mn Mn Fe Fe Fe O O O O O O O O O O O O O O O O &lt;sg8&gt; &lt;/material&gt;</p>
+                    </div>
+                    <div class="box" id="example10">
+                        <h3 class="title is-5">Material generation with given bulk modulus (Section 5.3)</h3>
+                        <p class="break-word"><strong>Instruction:</strong> Construct the composition for a material with a specified bulk modulus of 86.39 GPa.</p>
+                        <p class="break-word"><strong>Response:</strong> &lt;material&gt; Se Se Pd Sc &lt;sg164&gt; &lt;/material&gt;</p>
+                        <p>Design material with given bulk modulus.</p>
+                    </div>
+                    <div class="box" id="example11">
+                        <h3 class="title is-5">Guide RNA design (Section 6.2)</h3>
+                        <p class="break-word"><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence.</p>
+                        <p>&lt;dna&gt;GACTGGCACCAG…CCCTCGC&lt;/dna&gt;</p>
+                        <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AGACACAGCGGGTGCTCTGC&lt;/rna&gt;</p>
+                    </div>
+                    <div class="box" id="example12">
+                        <h3 class="title is-5">Protein binding RNA design (Section 6.3)</h3>
+                        <p class="break-word"><strong>Instructions:</strong> Given &lt;protein&gt;MSEY…SSGWGM&lt;/protein&gt;, create an RNA molecule that binds to it.</p>
+                        <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AAACAGG…CGTACGACA&lt;/rna&gt;</p>
+                    </div>
+                    <!-- New examples end here -->
                 </div>
-                <!-- New examples start here -->
-                <div class="box">
-                    <h3 class="title is-5">Protein sequence to full molecule design (Section 3.4)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Produce a compound guided by the target.
-                    &lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt; </p>
-                    <p class="break-word"><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Protein sequence to molecular fragment generation (Section 3.4)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Design a compound with reference to the target &lt;protein&gt;DTKEQRILR….EKAIYQGP&lt;/protein&gt; and the fragment &lt;fragA&gt; O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12 &lt;/fragA&gt;.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</p>
-                    <p>Here, ''[*:digit]'' refers to the connection point of the molecular fragment.</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Binding affinity improvement (Section 3.5)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Metabolism optimization (Section 3.6)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Transform &lt;mol&gt;COCCn1c(=O)c(-c2ccccc2)nc2cnc(N3CCOCC3)nc21&lt;/mol&gt; to yield lower CYP1A2 inhibition and present a better metabolic safety record.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;mol&gt;COc1ccc(&#8209;c2nc3cnc(N4CCOCC4)nc3n(Cc3cccc(OC)c3)c2=O)cc1&lt;/mol&gt;</p>
-                    <p>You can replace CYP to the enzymes you wish as input.</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Reaction prediction (Section 3.7)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Please suggest possible reactants for the given product</p>
-                    <p class="break-word">&lt;product&gt;CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1&lt;/product&gt;.</p>
-                    <p><strong>Response:</strong> &lt;reactant&gt;CC(=O)c1ccc2[nH]ccc2c1.CC(C)(C)OC(=O)OC(=O)OC(C)(C)C&lt;/reactant&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Protein generation (Section 4.2)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> I require a stable protein sequence, kindly generate one.</p>
-                    <p class="break-word"><strong>Response:</strong>&lt;protein&gt;GSVEVKIGTDRTTASSQDEAEERARRAGARRVRIDGNEVEVEM&lt;/protein&gt;</p>
-                    <hr>
-                    <p class="break-word"><strong>Instruction:</strong> Generate a soluble protein sequence.</p>
-                    <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MSLPNIFVEELVHTPIEKQVIEIVERKGIGHPDSLADGMAEAMSRELSREYIRRFGAVLHHNTDETQIVAGRSNPQFGGGEVIEPIYVLLVGRATKFFNGEYIPTDKIALKAARDYIRQHMQNLDPELDVVFNVRLGEGSTDLQDVFRRKSGNVALANDTSFGIGFAPLSETERLVFNVERRIYEEFRKKNPAIGEDVKVMGLREKDRISLTIAAAFVDRYVANIKEYDAIKEELENFVKEISSEYTEREVEVFVNTADDYETGCVYLTVTGTSAENGDDGSVGRGNRCNGLITPGRPMSMEASSGKNPINHVGKIYNLLANQIAARIAEEVEGVEEVYVRILSQIGKPINEPKALSVQVIPKSGYDISKLERPARDIAEEMIANVGKITDMVIEGKVRTFEGHHHHHH&lt;/protein&gt;</p>
-                    <hr>
-                    <p class="break-word"><strong>Instruction:</strong> Produce a protein sequence that is not soluble.</p>
-                    <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MAFLSQLQGGFAQLKQKAEAAAPSIADSLNQLKEAPKFMESAFKTGLNKVKLDSLGKVLNVPSLGRTQSPIDIVPVITAFGEHLQNAHFEVTYESTGEFKAVNDGNSIWLMREGNSSELAISFLPEEQYHLDAVNFHWATEPMNGSEHTIGGVGYAGEMHLIHRNTRFATMADALKQPNGVIAIAVFLNESHDDNAVFSPLINLLPQVIYKGSECKLCSFDFQTFFPVAEKTKEFWMYEGSETTDPFRETVNWIVIRAALPISSHQLDKLREVRAGRYDEEFSDKVPMKPLRPIQNPSSRTIQSSFRSVAGAPDLGFRQ&lt;/protein&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Antibody design and optimization (Section 4.3)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Using antigen &lt;protein&gt;TQVCTGTDMKLR…GESSEDCQS&lt;/protein&gt; and antibody frameworks &lt;antibody&gt; IVLTQTPS…LAVYYC&lt;/antibody&gt; and &lt;antibody&gt;FGGGTRLEIEVQ&lt;/antibody&gt;, create the CDR3 regions.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;antibody&gt;QQYSNYPWT&lt;/antibody&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Composition to material generation (Section 5.2)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Build a material that has Li, Ti, Mn, Fe, O.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;material&gt; Li Li Li Li Ti Ti Ti Mn Mn Fe Fe Fe O O O O O O O O O O O O O O O O &lt;sg8&gt; &lt;/material&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Material generation with given bulk modulus (Section 5.3)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Construct the composition for a material with a specified bulk modulus of 86.39 GPa.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;material&gt; Se Se Pd Sc &lt;sg164&gt; &lt;/material&gt;</p>
-                    <p>Design material with given bulk modulus.</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Guide RNA design (Section 6.2)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence.</p>
-                    <p>&lt;dna&gt;GACTGGCACCAG…CCCTCGC&lt;/dna&gt;</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AGACACAGCGGGTGCTCTGC&lt;/rna&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Protein binding RNA design (Section 6.3)</h3>
-                    <p class="break-word"><strong>Instructions:</strong> Given &lt;protein&gt;MSEY…SSGWGM&lt;/protein&gt;, create an RNA molecule that binds to it.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AAACAGG…CGTACGACA&lt;/rna&gt;</p>
-                </div>
-                <!-- New examples end here -->
             </div>
         </div>
     </section>
