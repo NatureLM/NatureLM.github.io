@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
     <!-- Replace the content tag with appropriate information -->
-    <meta name="description" content="NatureLM is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks.">
-    <meta property="og:title" content="NatureLM: Deciphering the Language of Nature for Scientific Discovery" />
-    <meta property="og:description" content="NatureLM is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks." />
+    <meta name="description" content="Nature Language Model (NatureLM) is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks.">
+    <meta property="og:title" content="Nature Language Model: Deciphering the Language of Nature for Scientific Discovery" />
+    <meta property="og:description" content="Nature Language Model (NatureLM) is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks." />
     <meta property="og:url" content="NatureLM.github.io" />
     <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
     <!-- <meta property="og:image" content="static/image/your_banner_image.png" />
@@ -15,8 +15,8 @@
     <meta property="og:image:height" content="630" /> -->
 
 
-    <meta name="twitter:title" content="NatureLM: Deciphering the Language of Nature for Scientific Discovery">
-    <meta name="twitter:description" content="NatureLM is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks.">
+    <meta name="twitter:title" content="Nature Language Model: Deciphering the Language of Nature for Scientific Discovery">
+    <meta name="twitter:description" content="Nature Language Model (NatureLM) is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks.">
     <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
     <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
     <meta name="twitter:card" content="summary_large_image"> -->
@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>NatureLM: Deciphering the Language of Nature for Scientific Discovery</title>
+    <title>Nature Language Model: Deciphering the Language of Nature for Scientific Discovery</title>
     <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -87,6 +87,40 @@
             margin-bottom: 5px;
             font-size: 0.95em; /* Slightly smaller font size */
         }
+        .pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin: 0; /* Removes extra margin around pre block */
+        }
+        .pre code {
+            display: block;
+            text-align: left; /* Ensures left alignment for code */
+            white-space: pre-wrap; /* Allows wrapping of long lines */
+            word-wrap: break-word; /* Ensures proper breaking of long words if needed */
+            overflow-x: auto; /* Keeps horizontal scrolling as a fallback for very long unbreakable content */
+        }
+        .instruction {
+            color: #d53f8c; /* Pink for instructions */
+            font-weight: bold;
+        }
+        .response {
+            color: #38a169; /* Green for responses */
+            font-weight: bold;
+        }
+        .protein {
+            color: #805ad5; /* Purple for protein sequences */
+            font-weight: bold;
+        }
+        .mol {
+            color: #e53e3e; /* Red for molecule sequences */
+            font-weight: bold;
+        }
+        .frag {
+            color: #e53e3e; /* Red for fragments */
+            font-weight: bold;
+        }
     </style>
 
     <script>
@@ -146,8 +180,7 @@
             <div class="container is-max-desktop">
                 <div class="columns is-centered">
                     <div class="column has-text-centered">
-                        <h1 class="title is-1 publication-title">NatureLM: Deciphering the Language of Nature for
-                            Scientific Discovery</h1>
+                        <h1 class="title is-1 publication-title">Nature Language Model: Deciphering the Language of Nature for Scientific Discovery</h1>
                         <div class="is-size-5 publication-authors">
                             <!-- Paper authors -->
                             <span class="author-block">NatureLM Team </span>
@@ -196,7 +229,7 @@
                     <h2 class="title is-3">NatureLM Highlights</h2>
                     <div class="content has-text-justified">
                         <p>
-                            NatureLM, developed by Microsoft Research AI for Science, is a groundbreaking sequence-based science foundation model designed to unify multiple scientific domains, including small molecules, materials, proteins, DNA and RNA. This innovative model leverages the "language of nature" to enable scientific discovery through text-based instructions.
+                            Nature Language Model (NatureLM), developed by Microsoft Research AI for Science, is a groundbreaking sequence-based science foundation model designed to unify multiple scientific domains, including small molecules, materials, proteins, DNA and RNA. This innovative model leverages the "language of nature" to enable scientific discovery through text-based instructions.
                         </p>
                         <p><strong>Key Features:</strong></p>
                         <ul>
@@ -265,13 +298,13 @@
     </section>
     <!--End paper poster -->
 
-
     <!-- Examples   -->
     <section class="section examples-section" id="examples">
         <div class="toc-container">
             <div class="toc">
                 <h3 class="title is-5">Table of Contents</h3>
                 <ul>
+                    <li><a href="#method-heading">Method</a></li>
                     <li><a href="#drug">Drug Discovery</a></li>
                     <li><a href="#protein">Protein Design</a></li>
                     <li><a href="#material">Material Design</a></li>
@@ -279,26 +312,48 @@
                 </ul>
             </div>
         </div>
+        <div class="method-content">
+            <div class="container is-max-desktop">
+                <h2 class="title" id="method-heading">How NatureLM works</h2>
+                <div class="content">
+                    <p>Built within a GPT-style framework, NatureLM extends the power of conventional large language models by:
+                        <ul>
+                        <li>Pre-training on multi-scientific-domain data: NatureLM extends the pre-training of existing large language models using hundreds of billions of curated tokens from biology, chemistry, and materials science, building a robust foundation of cross-disciplinary knowledge while preserving the capabilities of the original models.</li>
+                        <li>Instruction tuning for task adaptability: The model is fine-tuned on millions of question–answer pairs to better understand text-based prompts and generate relevant, contextually appropriate responses.</li>
+                        <li>Custom fine-tuning for specialized tasks: Researchers can further tailor NatureLM to specific goals using techniques like reinforcement learning or domain-specific fine-tuning for optimal performance.</li>
+                        </ul>
+                    </p>
+                    <p>NatureLM comes in three different sizes—1B, 8B, and 46.7B (an 8x7B mixture of expert model) parameters—providing flexibility based on computational resources and the scope of a given project. Across 22 categories of scientific tasks, the larger models generally demonstrate higher performance, demonstrating the potential of continuously improved performance from more data and larger model. </p>
+                    <p>Users can interact with NatureLM to facilitate scientific discovery and exploration. We offer several applications, including drug discovery, protein design, material design, and RNA design, enabling breakthroughs across diverse fields.</p>
+                </div>
+            </div>
+        </div>
         <div class="examples-content">
             <div class="container is-max-desktop">
-                <h2 class="title" id="examples-heading">Examples</h2>
+                <h2 class="title" id="examples-heading">Applications</h2>
                 <div class="content">
-                    <p>Researchers can utilize the instructions provided to interact with NatureLM.</p>
-                    
                     <h3 id="drug">Drug Discovery</h3>
                     <div class="box">
                         <h4>Protein to compound </h4>
                         <p>Designing small molecules based on an input protein sequence is an exciting and promising challenge in drug discovery, especially when structural information is unavailable or incomplete. NatureLM addresses this task by enabling both full molecule generation and molecular fragment generation, using the protein target sequence as input. This process, known as "sequence-to-compound," aims to directly design potential drug candidates by leveraging the protein's amino acid sequence to generate molecules with strong binding affinity and favorable properties. </p>
-                        <h5 class="title is-5">Scenario 1: Complete moleclue generation</h5>
-                        <p><strong>Instruction:</strong> Produce a compound guided by the target
-                            &lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt;</p>
-                        <p><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
-                        <h5 class="title is-5">Scenario 2: Fragment generation</h5>
-                        <p><strong>Instruction:</strong> Design a compound with reference to the target
-                            &lt;protein&gt;DTKEQRILR...EKAIYQGP&lt;/protein&gt; and the fragment  &lt;fragA&gt;O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12&lt;/fragA&gt;</p>
-                        <p><strong>Response:</strong> &lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</p>
-                        <p>We evaluated NatureLM on a held-out test set by generating an equal number of small-molecule ligands for each protein target. The generated compounds were assessed using docking score (estimate the binding affinity) and Synthetic Accessibility Score (SAS, estimate how difficult it is to synthesize the generated compound)</p>
-                        <p>From the full-compound generation results, we observed that NatureLM outperforms previous classification-based methods in generating compounds with better docking scores. Additionally, larger versions of NatureLM consistently produce compounds with improved binding affinity, as reflected in the docking scores. The synthetic accessibility score of NatureLM-generated compounds is generally favorable, demonstrating its ability to balance potency and synthesizability. </p>
+                        <pre>
+                            <code>
+# Scenario 1: Complete molecule generation
+<span class="instruction">Instruction:</span> Produce a compound guided by the target <span class="protein">&lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt;</span>
+<span class="response">Response:</span> <span class="mol">&lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</span>
+
+# Scenario 2: Molecular fragment generation
+<span class="instruction">Instruction:</span> Design a compound with reference to the target  <span class="protein">&lt;protein&gt;DTKEQRILR...EKAIYQGP&lt;/protein&gt;</span>  and the fragment <span class="frag">&lt;fragA&gt;O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12&lt;/fragA&gt;</span>
+<span class="response">Response:</span> <span class="frag">&lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</span>
+                            </code>
+                        </pre>
+                        <p>We evaluated NatureLM on a held-out test set by generating an equal number of small-molecule ligands for each protein target. The generated compounds were assessed using:
+                            <ul>
+                                <li>Docking Score: Calculated by AutoDock Vina, which estimates the binding affinity of the ligand to the protein. Lower scores indicate better binding affinity.</li>
+                                <li>Synthetic Accessibility Score (SAS): A measure of the synthetic feasibility of the generated compounds, calculated using RDKit. Lower scores indicate easier synthesis.</li>
+                            </ul>    
+                        </p>
+                        <p>From the full-compound generation results, we observed that NatureLM outperforms previous classification-based methods in generating compounds with better docking scores. Additionally, larger versions of NatureLM consistently produce compounds with improved binding affinity, as reflected in the docking scores. The synthetic accessibility score of NatureLM-generated compounds is generally favorable, demonstrating its ability to balance potency and synthesizability. A brief case study is presented in the accompanying video.</p>
                         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                             <thead>
                                 <tr>
@@ -335,54 +390,70 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p>For molecular fragment generation, we selected three PDB files published after May 2024 to ensure they were not included in our training data. Using the target sequence and the fragment we aimed to retain, we generated molecular fragments. The results, demonstrated in Figure XXX, show that larger versions of NatureLM consistently yield better outcomes. </p>
+                        <video controls style="width: 60%;">
+                            <source src="static/video/demo0305.mp4" type="video/mp4" />
+                        </video>
+                        <p>For molecular fragment generation, we selected three PDB files published after May 2024 to ensure they were not included in our training data. Using the target sequence and the fragment we aimed to retain, we generated molecular fragments. The results, demonstrated in the figure below, show that larger versions of NatureLM consistently yield better outcomes. </p>
                         
                         <p><img src="static/images/mol_dock.png"></p>
-                        <p>Moving forward, we aim to expand our evaluation to include more diverse protein sequences and additional metrics beyond docking and SAS scores. This will help validate the broader applicability of "sequence-to-compound" drug discovery and refine NatureLM's ability to generate drug-like molecules with real-world potential.
                    
                     </div>
                     <div class="box">
                         <h4>Text-Driven Generation and Optimization </h4>
-                        <p>NatureLM allows scientists to interact with AI effortlessly by describing their objectives in natural language. It can generate and optimize specified scientific entities. This capability accelerates iteration cycles and empowers researchers to focus on tackling critical scientific challenges.</p>
-                        <h5 class="title is-5">Scenario 1: Text-based compound affinity optimization </h5>
                         <p>Optimizing the binding affinity of a drug compound is a critical step in drug discovery, as it directly impacts the effectiveness and specificity of the compound for its biological target. Higher binding affinity often translates to improved efficacy and lower required dosages, which can reduce potential side effects. This process, however, is traditionally resource-intensive and time-consuming.</p>
                         <p>With NatureLM, researchers can streamline this process by interacting with the model using natural language. For example:</p>
-                        <p><strong>Instruction:</strong> Improve the binding affinity of &lt;mol&gt;CC(C)c1cc(=O)c(O)cn1-c1cccc(-c2ccccc2)c1smiles1&lt;/mol&gt; on Catechol O-methyltransferase.</p>
-                        <p><strong>Response:</strong></p>
-                        <p><img src="static/images/mol_optim_bind.png"/></p>
+                        <pre><code>
+<span class="instruction">Instruction:</span> Design a compound with reference to the target  <span class="protein">&lt;protein&gt;DTKEQRILR...EKAIYQGP&lt;/protein&gt;</span>  and the fragment <span class="frag">&lt;fragA&gt;O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12&lt;/fragA&gt;</span>
+<span class="response">Response:</span> <span class="frag">&lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</span>
+                        </code></pre>
                         <p>NatureLM recommends the SMILES representations of candidate compounds with potentially improved binding affinity. Users can specify the desired number of candidates for generation and further evaluate them using methods such as docking, Free Energy Perturbation (FEP), Structure-Activity Relationship (SAR) analysis, or expert review. In two demonstrated cases, NatureLM successfully identified compounds that aligned with previously validated results from wet-lab experiments, highlighting its potential to propose viable candidates. Additionally, NatureLM can design entirely new compounds with superior docking scores, with further findings currently awaiting experimental validation.</p>
-                        <img src="static/images/mol_enz_hlm.png"/>
+                        <p><img src="static/images/mol_optim_bind.png"/></p>
                     </div>
 
                     <h3 id="protein">Protein Design</h3>
-                    <p>We leverage NatureLM to design proteins. Example instructions include:
-                        <ul>
-                            <li>I require a stable protein sequence, kindly generate one.</li>
-                            <li>Generate a soluble protein sequence.</li>
-                            <li>Produce a protein sequence that is not soluble.</li>
-                        </ul>
-                        Several showcases demonstrating these capabilities are provided below.
+                    <h4 id="protein-sol">(In)Soluble and stable protein design</h4>
+                    <p>We can chat with NatureLM to design proteins:
+<pre><code>
+<span class="instruction">Instruction:</span> I require a stable protein sequence, kindly generate one.
+<span class="instruction">Instruction:</span> Generate a soluble protein sequence.
+<span class="instruction">Instruction:</span> Produce a protein sequence that is not soluble.
+</code></pre>
+                    Several showcases demonstrating these capabilities are provided below.
                     </p>
                     <img src="static/images/prot_case.png" />
                     <p>
                         Additionally, we utilize SFM-Protein to train a predictor that determines whether an input protein is stable. The success rates for the 1B, 8B, and 8x7B models are 64.4%, 65.7%, and 81.2%, respectively. These results demonstrate that larger models can lead to better performance.
                     </p>
+                    <h4 id="protein-heme">Heme-binding protein design</h4>
                     <p>
-                        A notable application of text-based protein design is creating proteins that can bind to heme, an essential cofactor with critical roles in oxygen transport, electron transfer, and enzymatic activity. By using natural language instructions, we aim to generate novel protein sequences capable of binding to the heme molecule while exploring diverse structural strategies. 
+                        Heme is an essential cofactor with critical roles in oxygen transport, electron transfer, and enzymatic activity. We use NatureLM to design proteins that can bind to heme:
                     </p>
-                    <p>The input command is that:</p>
-                    <p>Generate a protein that binds to heme.</p>
+<pre><code>
+<span class="instruction">Instruction:</span> Design a heme-binding protein sequence.  
+<span class="response">Response:</span> <span class="protein">&lt;protein&gt;MSAAEGAVVFSEEKEALVLK...&lt;/protein&gt;</span>
+<span class="instruction">Instruction:</span> Generate a protein that can bind to <span class="mol">&lt;mol&gt;[Fe+2].C=CC1=C(C)c2cc3[n-]c(cc4[n-]c(cc5nc(cc1n2)C(C)...&lt;//mol&gt;</span>
+<span class="response">Response:</span> <span class="protein">&lt;protein&gt;ETIGKRVFVHYCHGCHSQNALGI...&lt;/protein&gt;</span>
+</code></pre>
                     <p>After generation, we use NatureLM's protein-to-description function to annotate the generated sequences. Only the sequences containing keywords related to heme are retained for further analysis. Subsequently, we employ Phoenix to predict the complex structure of the generated protein with the heme group. Following this, we evaluate the remaining candidate proteins.
                     </p>
                     <p>
                     Among the generated proteins, we identify a promising candidate with a sequence similarity of 0.55 to the NR database. Interestingly, while the sequence exhibits moderate similarity, the predicted structure closely resembles existing proteins. Notably, two histidine residues are positioned near the central iron atom of the heme group, facilitating coordinated bonding and potential functional activity.
                     </p>
-                    <img src="static/images/prot_3d.png" />
-                    <video controls style="width: 60%;">
-                        <source src="static/video/demo0305.mp4" type="video/mp4" />
+                    <video controls style="width: 50%;">
+                        <source src="static/video/heme_text_protein.mp4" type="video/mp4" />
                     </video>
+                    <video controls style="width: 50%;">
+                        <source src="static/video/heme_smiles_protein.mp4" type="video/mp4" />
+                    </video>
+                    <h4 id="protein-antibody">Antibody design</h4>
+                    <p>Antigen-to-antibody design is a pivotal task in modern biomedical research, underpinning the development of targeted therapeutics and vaccines. By leveraging computational methods to predict and engineer the complementarity-determining regions (CDRs) of antibodies, researchers can create molecules that bind antigens with high specificity and affinity. NatureLM, for instance, enables the precise engineering of the CDR3 region of an antibody using the antigen sequence and the antibody’s framework. The example input below illustrates this application:</p>
+<pre><code>
+<span class="instruction">Instruction:</span> Using antigen <span class="protein">&lt;protein&gt;RDFNNLTKGLCTINSWHIYGKDNAVRIGEDSDVLVTREPYVSCDPDECRFYALSQGTTIRGKHSNGTIHDRSQYRAL...&lt;/protein&gt;</span> and antibody frameworks <span class="protein">&lt;antibody&gt;QVQLQQSGAELVKPGASVRMSCKASGYTFTNYNMYWVKQSPGQGLEWIGI...&lt;/antibody&gt;</span>, <span class="protein">&lt;antibody&gt;WGQGTTVTV&lt;/antibody&gt;</span>, create the CDR3 regions.
+<span class="response">Response:</span> <span class="antibody">&lt;protein&gt;ARSEYGGYYAYAMDY&lt;/antibody&gt;</span>
+</code></pre>  
+                    <p>NatureLM outputs the CDR3 regions. The figure visualized antigen–antibody complex confirms that the designed CDR region interacts effectively with the antigen.</p>
+                    <img src="static/images/antigen2antibody.png"/>
                     
-
 
                     <h3 id="material">Material Design</h3>
                     <p>NatureLM enables researchers to generate materials with specified properties by using natural language instructions. This text-to-material approach is particularly promising as it streamlines the discovery process, allowing researchers to explore vast design spaces more efficiently than traditional trial-and-error methods. Below, we present two examples that demonstrate its capabilities in material composition and property </p>
@@ -505,9 +576,9 @@
     <section class="section" id="BibTeX">
         <div class="container is-max-desktop content">
             <h2 class="title">BibTeX</h2>
-            <pre><code>@misc{naturelm2025,
-    title={NatureLM: Deciphering the Language of Nature for Scientific Discovery}, 
-    author={Yingce Xia and Peiran Jin and Shufang Xie and Liang He and Chuan Cao and Renqian Luo and Guoqing Liu and Yue Wang and Zequn Liu and Yuan-Jyue Chen and Zekun Guo and Yeqi Bai and Pan Deng and Yaosen Min and Ziheng Lu and Hongxia Hao and Han Yang and Jielan Li and Chang Liu and Jia Zhang and Jianwei Zhu and Kehan Wu and Wei Zhang and Kaiyuan Gao and Qizhi Pei and Qian Wang and Xixian Liu and Yanting Li and Houtian Zhu and Yeqing Lu and Mingqian Ma and Zun Wang and Tian Xie and Krzysztof Maziarz and Marwin Segler and Zhao Yang and Zilong Chen and Yu Shi and Shuxin Zheng and Lijun Wu and Chen Hu and Peggy Dai and Tie-Yan Liu and Haiguang Liu and Tao Qin},
+            <pre><code>@misc{NatureLM2025,
+    title={Nature Language Model: Deciphering the Language of Nature for Scientific Discovery}, 
+    author={Yingce Xia and Peiran Jin and Shufang Xie and Liang He and Chuan Cao and Renqian Luo and Guoqing Liu and Yue Wang and Zequn Liu and Yuan-Jyue Chen and Zekun Guo and Yeqi Bai and Pan Deng and Yaosen Min and Ziheng Lu and Hongxia Hao and Han Yang and Jielan Li and Chang Liu and Jia Zhang and Jianwei Zhu and Ran Bi and Kehan Wu and Wei Zhang and Kaiyuan Gao and Qizhi Pei and Qian Wang and Xixian Liu and Yanting Li and Houtian Zhu and Yeqing Lu and Mingqian Ma and Zun Wang and Tian Xie and Krzysztof Maziarz and Marwin Segler and Zhao Yang and Zilong Chen and Yu Shi and Shuxin Zheng and Lijun Wu and Chen Hu and Peggy Dai and Tie-Yan Liu and Haiguang Liu and Tao Qin},
     year={2025},
     eprint={2502.07527},
     archivePrefix={arXiv},
