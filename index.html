@@ -520,35 +520,35 @@
 
                     <h3 id="material">Material Design</h3>
                     <p>NatureLM enables researchers to generate materials with specified properties by using natural language instructions. This text-to-material approach is particularly promising as it streamlines the discovery process, allowing researchers to explore vast design spaces more efficiently than traditional trial-and-error methods. Below, we present two examples that demonstrate its capabilities in material composition and property </p>
+                    <h4>Generating a material with specified elements</h4>
+                    <p>In the first example, we prompt NatureLM to draft a material that includes specific elements.</p>
+<pre><code>
+<span class="instruction">Instruction:</span>  Draft a material that includes Sr, Nd, Bi, O. 
+<span class="response">Response:</span> <span class="material">&lt;material&gt; Sr Sr Sr Sr Nd Nd Bi Bi O O O O O O O O O O O O &lt;sg14&gt; &lt;/material&gt;</span>
+</code></pre>
+                    <p>This output specifies both the composition of the material (4 Sr, 2 Nd, 2 Bi, and 12 O per unit cell) and its space group (14 for this example). To further enhance its capabilities, we fine-tuned the 1B version of NatureLM, transforming it into a material structure generator referred to as NatureLM-Mat3D. NatureLM-Mat3D takes the composition and space group as input and autoregressively outputs the lattice parameters, followed by the atomic coordinates within that lattice.</p>
+                    <p>Using MatterSim to evaluate the properties of the generated structure, we found that its energy above hull (e_hull) is 0.00, confirming that it is a stable material.</p>
+                    <img src="static/images/mat_3d.png"/>
 
                     <div class="box">
-                        <h4>Example 1: Generating a Material with Specified Elements</h4>
-                        <p>In the first example, we prompt NatureLM to draft a material that includes specific elements.</p>
-                        <p><strong>Instruction:</strong> Draft a material that includes Sr, Nd, Bi, O.</p>
-                        <p><strong>Response:</strong> &lt;material&gt; Sr Sr Sr Sr Nd Nd Bi Bi O O O O O O O O O O O O &lt;sg14&gt; &lt;/material&gt; </p>
-                        <p>This output specifies both the composition of the material (4 Sr, 2 Nd, 2 Bi, and 12 O per unit cell) and its space group (14 for this example). To further enhance its capabilities, we fine-tuned the 1B version of NatureLM, transforming it into a material structure generator referred to as NatureLM-Mat3D. NatureLM-Mat3D takes the composition and space group as input and autoregressively outputs the lattice parameters, followed by the atomic coordinates within that lattice.</p>
-                        <p>Using MatterSim to evaluate the properties of the generated structure, we found that its energy above hull (e_hull) is 0.00, confirming that it is a stable material.</p>
-                        <img src="static/images/mat_3d.png"/>
-                    </div>
-
-                    <div class="box">
-                        <h4>Example 2: Generating a Material with a Specified Bulk Modulus</h4>
+                        <h4>Generating a Material with a Specified Bulk Modulus</h4>
                         <p>Materials with an ultra-high bulk modulus are highly valued for their exceptional stiffness and incompressibility, making them critical for applications in extreme environments, industrial tools, and advanced engineering. To test NatureLM's ability to generate such materials, we tasked it with designing a material with a desired bulk modulus of 400 GPa, a value comparable to the stiffness of diamond:</p>
-                        <p><strong>Instruction:</strong> Provide the composition for a material designed to have a desired bulk modulus of 400 GPa.</p>
-                        
-                        <p>Similar to the evaluation pipeline used in the first user application, we begin by using NatureLM-Mat3D to predict the 3D atomic structure of the material. We then employ MatterSim to estimate the e_hull and bulk modulus, followed by a manual assessment of the structural feasibility. Next, for materials with low e_hull values and a bulk modulus close to 400 GPa, we perform Density Functional Theory (DFT) calculations to obtain more accurate bulk modulus values. Using this filtering approach, we apply DFT to evaluate the following three cases</p>
-                        <p>&lt;material&gt; Ir Os Os Os Os Os  &lt;sg155&gt; &lt;/material&gt;</p>
-                        <p>&lt;material&gt; Os Os Os Re   &lt;sg187&gt; &lt;/material&gt;</p>
-                        <p>&lt;material&gt; Re Re Re C   &lt;sg187&gt; &lt;/material&gt;</p>
-                        <p>And their results are:</p>
-                        <img src="static/images/mat_bulk.png"/>
-                        <p>The DFT calculations computationally confirm that the above three materials above possess high bulk modulus values. [如果喜欢，material expert可讲讲这几个材料和之前不一样的地方] These findings highlight the potential of NatureLM to generate computationally viable materials suitable for advanced applications.</p>
+<pre><code>
+<span class="instruction">Instruction:</span>  Provide the composition for a material designed to have a desired bulk modulus of 400 GPa. 
+</code></pre>                        
+                        <p>Similar to the evaluation pipeline used in the first user application, we begin by using NatureLM-Mat3D to predict the 3D atomic structure of the material. We then employ MatterSim to estimate the e_hull and bulk modulus. We manually identified cases where MatterSim predicted bulk modulus values within a 5 GPa range of the target (400Gpa here). Two such cases were selected for further validation using density functional theory (DFT) calculations.</p>
+<pre><code>
+<span class="response">Response: </span><span class="material">&lt;material&gt; Os Os Os Re &lt;sg187&gt; &lt;/material&gt;</span>
+<span class="response">Response: </span><span class="material">&lt;material&gt; Re Re Re C &lt;sg187&gt; &lt;/material&gt;</span>
+</code></pre>  
+                        <img src="static/images/high_bulk.png"/>
+                        <p> The DFT results revealed bulk modulus values of 390 GPa and 394 GPa, which closely align with the target value of 400 GPa. Beyond achieving the bulk modulus target, the two generated structures were confirmed to be novel compared to those available in the Materials Project database. This novelty underscores NatureLM's potential for discovering new materials with exceptional mechanical properties, thereby broadening the scope of material design and innovation.</p>
                         <p>While NatureLM demonstrates significant potential in generating material compositions and predicting properties, its space group predictions are not always accurate, which can impact the precision of the resulting 3D structures and property evaluations. Despite this limitation, the method remains highly valuable as it drastically reduces the time and computational cost associated with exploring and identifying new material compositions. </p>
                     </div>
                     
                     
                     <h3 id="rna">RNA Design</h3>
-                    <p>Guide RNA (gRNA) is essential in CRISPR-Cas9 gene editing, directing the Cas9 nuclease to a specific genomic site. It consists of a crispr RNA (crRNA), a ~20-nucleotide sequence complementary to the target DNA, and a tracrRNA, which binds Cas9. We show that NatureLM can design crRNA that (1) is 17 to 24 nucleotides long, (2) matches a region in the given DNA, and (3) is followed by an “NGG” Protospacer Adjacent Motif (PAM). N represents a nucleotide base that could be any of the four standard bases: adenine (A), cytosine (C), guanine (G), or thymine (T). The example figure below shows the NatureLM designed guide RNA satisfies the above three criteria.</p>
+                    <p>Guide RNA (gRNA) is essential in CRISPR-Cas9 gene editing, directing the Cas9 nuclease to a specific genomic site. It consists of a crispr RNA (crRNA), a ~20-nucleotide sequence complementary to the target DNA, and a tracrRNA, which binds Cas9. We show that NatureLM can design crRNA that (1) is 17 to 24 nucleotides long, (2) matches a region in the given DNA, and (3) is followed by an "NGG" Protospacer Adjacent Motif (PAM). N represents a nucleotide base that could be any of the four standard bases: adenine (A), cytosine (C), guanine (G), or thymine (T). The example figure below shows the NatureLM designed guide RNA satisfies the above three criteria.</p>
                     <img src="static/images/grna.png"/>
                     
                     <hr/>
