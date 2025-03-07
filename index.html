@@ -494,7 +494,7 @@
 <pre><code>
 <span class="instruction">Instruction:</span> Design a heme-binding protein sequence.  
 <span class="response">Response:</span> <span class="protein">&lt;protein&gt;MSAAEGAVVFSEEKEALVLK...&lt;/protein&gt;</span>
-<span class="instruction">Instruction:</span> Generate a protein that can bind to <span class="mol">&lt;mol&gt;[Fe+2].C=CC1=C(C)c2cc3[n-]c(cc4[n-]c(cc5nc(cc1n2)C(C)...&lt;//mol&gt;</span>
+<span class="instruction">Instruction:</span> Generate a protein that can bind to <span class="mol">&lt;mol&gt;[Fe+2].C=CC1=C(C)c2cc3[n-]c(cc4[n-]c(cc5nc(cc1n2)C(C)...&lt;/mol&gt;</span>
 <span class="response">Response:</span> <span class="protein">&lt;protein&gt;ETIGKRVFVHYCHGCHSQNALGI...&lt;/protein&gt;</span>
 </code></pre>
                     <p>After generation, we use NatureLM's protein-to-description function to annotate the generated sequences. Only the sequences containing keywords related to heme are retained for further analysis. Subsequently, we employ Phoenix to predict the complex structure of the generated protein with the heme group. Following this, we evaluate the remaining candidate proteins.
