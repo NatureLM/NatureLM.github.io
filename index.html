@@ -121,23 +121,63 @@
             color: #e53e3e; /* Red for fragments */
             font-weight: bold;
         }
+        /* Styles for the collapsible section */
+        .collapsible-section {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        .collapse-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
+            text-align: left;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .collapse-btn:hover {
+            background-color: #e8e8e8;
+        }
+        
+        .collapse-btn:after {
+            content: '\002B'; /* Plus sign */
+            float: right;
+            font-weight: bold;
+        }
+        
+        .collapse-btn.active:after {
+            content: '\2212'; /* Minus sign */
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
     </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tocContainer = document.querySelector('.toc-container');
-            const examplesSection = document.querySelector('.examples-section');
-            const examplesHeading = document.querySelector('#examples-heading');
+            const tocAlignTopSection = document.querySelector('.examples-section');
+            const tocAlignTopHeading = document.querySelector('#method-heading');
             
             function updateTOCPosition() {
                 // Get the position of the Examples heading
-                const headingRect = examplesHeading.getBoundingClientRect();
+                const headingRect = tocAlignTopHeading.getBoundingClientRect();
                 
                 // Check if any part of the examples section is in view
-                const examplesSectionRect = examplesSection.getBoundingClientRect();
+                const tocAlignTopSectionRect = tocAlignTopSection.getBoundingClientRect();
                 const isExamplesVisible = 
-                    examplesSectionRect.top < window.innerHeight && 
-                    examplesSectionRect.bottom > 0;
+                    tocAlignTopSectionRect.top < window.innerHeight && 
+                    tocAlignTopSectionRect.bottom > 0;
                 
                 if (isExamplesVisible) {
                     tocContainer.style.display = 'block';
@@ -171,6 +211,28 @@
     <script src="static/js/bulma-carousel.min.js"></script>
     <script src="static/js/bulma-slider.min.js"></script>
     <script src="static/js/index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Existing TOC positioning code
+            // ...existing code...
+            
+            // Setup for collapsible section
+            const collapseBtn = document.querySelector('.collapse-btn');
+            const collapsibleContent = document.querySelector('.collapsible-content');
+            
+            if (collapseBtn) {
+                collapseBtn.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    
+                    if (collapsibleContent.style.maxHeight) {
+                        collapsibleContent.style.maxHeight = null;
+                    } else {
+                        collapsibleContent.style.maxHeight = collapsibleContent.scrollHeight + "px";
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -309,6 +371,7 @@
                     <li><a href="#protein">Protein Design</a></li>
                     <li><a href="#material">Material Design</a></li>
                     <li><a href="#rna">RNA Design</a></li>
+                    <li><a href="#more">More Examples</a></li>
                 </ul>
             </div>
         </div>
@@ -491,80 +554,95 @@
                     <hr/>
 
                     <!--- BELOW ARE OLD EXAMPLES-->
-                    <h2>BELOW ARE OLD EXAMPLES</h2>
-
-                    <div class="box" id="example1">
-                        <h3 class="title is-5">Generate molecule with given text compound properties (Section 3.2) </h3>
-                        <p><strong>Instruction:</strong> Generate a molecule with four hydrogen bond donors.</p>
-                        <p><strong>Response:</strong> <span>C(C[C@@H](C(=O)O)N)CN=C(N)N</span> </p>
-                        <p>One can replace `four hydrogen bonds ` to other properties like `QED 0.5`, `TPSA 90`, `three hydrogen bond donors`, etc.</p>
-                    </div>
-                    <div class="box" id="example2">
-                        <h3 class="title is-5">Protein sequence to full molecule design (Section 3.4)</h3>
-                        <p class="break-word"><strong>Instruction:</strong> Produce a compound guided by the target.
-                        &lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt; </p>
-                        <p class="break-word"><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
-                    </div>
-                    <div class="box" id="example3">
-                        <h3 class="title is-5">Protein sequence to molecular fragment generation (Section 3.4)</h3>
-                        <p class="break-word"><strong>Instruction:</strong> Design a compound with reference to the target &lt;protein&gt;DTKEQRILR….EKAIYQGP&lt;/protein&gt; and the fragment &lt;fragA&gt; O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12 &lt;/fragA&gt;.</p>
-                        <p class="break-word"><strong>Response:</strong> &lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</p>
-                        <p>Here, ''[*:digit]'' refers to the connection point of the molecular fragment.</p>
-                    </div>
-                    <div class="box" id="example4">
-                        <h3 class="title is-5">Binding affinity improvement (Section 3.5)</h3>
-                        <p class="break-word"><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
-                        <p class="break-word"><strong>Response:</strong> &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
-                    </div>
-                    <div class="box" id="example5">
-                        <h3 class="title is-5">Metabolism optimization (Section 3.6)</h3>
-                        <p class="break-word"><strong>Instruction:</strong> Transform &lt;mol&gt;COCCn1c(=O)c(-c2ccccc2)nc2cnc(N3CCOCC3)nc21&lt;/mol&gt; to yield lower CYP1A2 inhibition and present a better metabolic safety record.</p>
-                        <p class="break-word"><strong>Response:</strong> &lt;mol&gt;COc1ccc(&#8209;c2nc3cnc(N4CCOCC4)nc3n(Cc3cccc(OC)c3)c2=O)cc1&lt;/mol&gt;</p>
-                        <p>You can replace CYP to the enzymes you wish as input.</p>
-                    </div>
-                    <div class="box" id="example6">
-                        <h3 class="title is-5">Reaction prediction (Section 3.7)</h3>
-                        <p class="break-word"><strong>Instruction:</strong> Please suggest possible reactants for the given product</p>
-                        <p class="break-word">&lt;product&gt;CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1&lt;/product&gt;.</p>
-                        <p><strong>Response:</strong> &lt;reactant&gt;CC(=O)c1ccc2[nH]ccc2c1.CC(C)(C)OC(=O)OC(=O)OC(C)(C)C&lt;/reactant&gt;</p>
-                    </div>
-                    <div class="box" id="example7">
-                        <h3 class="title is-5">Protein generation (Section 4.2)</h3>
-                        <p class="break-word"><strong>Instruction:</strong> I require a stable protein sequence, kindly generate one.</p>
-                        <p class="break-word"><strong>Response:</strong>&lt;protein&gt;GSVEVKIGTDRTTASSQDEAEERARRAGARRVRIDGNEVEVEM&lt;/protein&gt;</p>
-                        <hr>
-                        <p class="break-word"><strong>Instruction:</strong> Generate a soluble protein sequence.</p>
-                        <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MSLPNIFVEELVHTPIEKQVIEIVERKGIGHPDSLADGMAEAMSRELSREYIRRFGAVLHHNTDETQIVAGRSNPQFGGGEVIEPIYVLLVGRATKFFNGEYIPTDKIALKAARDYIRQHMQNLDPELDVVFNVRLGEGSTDLQDVFRRKSGNVALANDTSFGIGFAPLSETERLVFNVERRIYEEFRKKNPAIGEDVKVMGLREKDRISLTIAAAFVDRYVANIKEYDAIKEELENFVKEISSEYTEREVEVFVNTADDYETGCVYLTVTGTSAENGDDGSVGRGNRCNGLITPGRPMSMEASSGKNPINHVGKIYNLLANQIAARIAEEVEGVEEVYVRILSQIGKPINEPKALSVQVIPKSGYDISKLERPARDIAEEMIANVGKITDMVIEGKVRTFEGHHHHHH&lt;/protein&gt;</p>
-                        <hr>
-                        <p class="break-word"><strong>Instruction:</strong> Produce a protein sequence that is not soluble.</p>
-                        <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MAFLSQLQGGFAQLKQKAEAAAPSIADSLNQLKEAPKFMESAFKTGLNKVKLDSLGKVLNVPSLGRTQSPIDIVPVITAFGEHLQNAHFEVTYESTGEFKAVNDGNSIWLMREGNSSELAISFLPEEQYHLDAVNFHWATEPMNGSEHTIGGVGYAGEMHLIHRNTRFATMADALKQPNGVIAIAVFLNESHDDNAVFSPLINLLPQVIYKGSECKLCSFDFQTFFPVAEKTKEFWMYEGSETTDPFRETVNWIVIRAALPISSHQLDKLREVRAGRYDEEFSDKVPMKPLRPIQNPSSRTIQSSFRSVAGAPDLGFRQ&lt;/protein&gt;</p>
-                    </div>
-                    <div class="box" id="example8">
-                        <h3 class="title is-5">Antibody design and optimization (Section 4.3)</h3>
-                        <p class="break-word"><strong>Instruction:</strong> Using antigen &lt;protein&gt;TQVCTGTDMKLR…GESSEDCQS&lt;/protein&gt; and antibody frameworks &lt;antibody&gt; IVLTQTPS…LAVYYC&lt;/antibody&gt; and &lt;antibody&gt;FGGGTRLEIEVQ&lt;/antibody&gt;, create the CDR3 regions.</p>
-                        <p class="break-word"><strong>Response:</strong> &lt;antibody&gt;QQYSNYPWT&lt;/antibody&gt;</p>
-                    </div>
-                    <div class="box" id="example9">
-                        <h3 class="title is-5">Composition to material generation (Section 5.2)</h3>
-                        <p class="break-word"><strong>Instruction:</strong> Build a material that has Li, Ti, Mn, Fe, O.</p>
-                        <p class="break-word"><strong>Response:</strong> &lt;material&gt; Li Li Li Li Ti Ti Ti Mn Mn Fe Fe Fe O O O O O O O O O O O O O O O O &lt;sg8&gt; &lt;/material&gt;</p>
-                    </div>
-                    <div class="box" id="example10">
-                        <h3 class="title is-5">Material generation with given bulk modulus (Section 5.3)</h3>
-                        <p class="break-word"><strong>Instruction:</strong> Construct the composition for a material with a specified bulk modulus of 86.39 GPa.</p>
-                        <p class="break-word"><strong>Response:</strong> &lt;material&gt; Se Se Pd Sc &lt;sg164&gt; &lt;/material&gt;</p>
-                        <p>Design material with given bulk modulus.</p>
-                    </div>
-                    <div class="box" id="example11">
-                        <h3 class="title is-5">Guide RNA design (Section 6.2)</h3>
-                        <p class="break-word"><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence.</p>
-                        <p>&lt;dna&gt;GACTGGCACCAG…CCCTCGC&lt;/dna&gt;</p>
-                        <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AGACACAGCGGGTGCTCTGC&lt;/rna&gt;</p>
-                    </div>
-                    <div class="box" id="example12">
-                        <h3 class="title is-5">Protein binding RNA design (Section 6.3)</h3>
-                        <p class="break-word"><strong>Instructions:</strong> Given &lt;protein&gt;MSEY…SSGWGM&lt;/protein&gt;, create an RNA molecule that binds to it.</p>
-                        <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AAACAGG…CGTACGACA&lt;/rna&gt;</p>
+                    <div id="more" class="collapsible-section">
+                        <button class="collapse-btn">Click to show more examples</button>
+                        <div class="collapsible-content">
+                            
+                            <div class="box" id="example1">
+                                <h3 class="title is-5">Generate molecule with given text compound properties (Section 3.2) </h3>
+                                <p><strong>Instruction:</strong> Generate a molecule with four hydrogen bond donors.</p>
+                                <p><strong>Response:</strong> <span>C(C[C@@H](C(=O)O)N)CN=C(N)N</span> </p>
+                                <p>One can replace `four hydrogen bonds ` to other properties like `QED 0.5`, `TPSA 90`, `three hydrogen bond donors`, etc.</p>
+                            </div>
+                            
+                            <div class="box" id="example2">
+                                <h3 class="title is-5">Protein sequence to full molecule design (Section 3.4)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Produce a compound guided by the target.
+                                &lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt; </p>
+                                <p class="break-word"><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example3">
+                                <h3 class="title is-5">Protein sequence to molecular fragment generation (Section 3.4)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Design a compound with reference to the target &lt;protein&gt;DTKEQRILR….EKAIYQGP&lt;/protein&gt; and the fragment &lt;fragA&gt; O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12 &lt;/fragA&gt;.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</p>
+                                <p>Here, ''[*:digit]'' refers to the connection point of the molecular fragment.</p>
+                            </div>
+                            
+                            <div class="box" id="example4">
+                                <h3 class="title is-5">Binding affinity improvement (Section 3.5)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example5">
+                                <h3 class="title is-5">Metabolism optimization (Section 3.6)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Transform &lt;mol&gt;COCCn1c(=O)c(-c2ccccc2)nc2cnc(N3CCOCC3)nc21&lt;/mol&gt; to yield lower CYP1A2 inhibition and present a better metabolic safety record.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;mol&gt;COc1ccc(&#8209;c2nc3cnc(N4CCOCC4)nc3n(Cc3cccc(OC)c3)c2=O)cc1&lt;/mol&gt;</p>
+                                <p>You can replace CYP to the enzymes you wish as input.</p>
+                            </div>
+                            
+                            <div class="box" id="example6">
+                                <h3 class="title is-5">Reaction prediction (Section 3.7)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Please suggest possible reactants for the given product</p>
+                                <p class="break-word">&lt;product&gt;CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1&lt;/product&gt;.</p>
+                                <p><strong>Response:</strong> &lt;reactant&gt;CC(=O)c1ccc2[nH]ccc2c1.CC(C)(C)OC(=O)OC(=O)OC(C)(C)C&lt;/reactant&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example7">
+                                <h3 class="title is-5">Protein generation (Section 4.2)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> I require a stable protein sequence, kindly generate one.</p>
+                                <p class="break-word"><strong>Response:</strong>&lt;protein&gt;GSVEVKIGTDRTTASSQDEAEERARRAGARRVRIDGNEVEVEM&lt;/protein&gt;</p>
+                                <hr>
+                                <p class="break-word"><strong>Instruction:</strong> Generate a soluble protein sequence.</p>
+                                <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MSLPNIFVEELVHTPIEKQVIEIVERKGIGHPDSLADGMAEAMSRELSREYIRRFGAVLHHNTDETQIVAGRSNPQFGGGEVIEPIYVLLVGRATKFFNGEYIPTDKIALKAARDYIRQHMQNLDPELDVVFNVRLGEGSTDLQDVFRRKSGNVALANDTSFGIGFAPLSETERLVFNVERRIYEEFRKKNPAIGEDVKVMGLREKDRISLTIAAAFVDRYVANIKEYDAIKEELENFVKEISSEYTEREVEVFVNTADDYETGCVYLTVTGTSAENGDDGSVGRGNRCNGLITPGRPMSMEASSGKNPINHVGKIYNLLANQIAARIAEEVEGVEEVYVRILSQIGKPINEPKALSVQVIPKSGYDISKLERPARDIAEEMIANVGKITDMVIEGKVRTFEGHHHHHH&lt;/protein&gt;</p>
+                                <hr>
+                                <p class="break-word"><strong>Instruction:</strong> Produce a protein sequence that is not soluble.</p>
+                                <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MAFLSQLQGGFAQLKQKAEAAAPSIADSLNQLKEAPKFMESAFKTGLNKVKLDSLGKVLNVPSLGRTQSPIDIVPVITAFGEHLQNAHFEVTYESTGEFKAVNDGNSIWLMREGNSSELAISFLPEEQYHLDAVNFHWATEPMNGSEHTIGGVGYAGEMHLIHRNTRFATMADALKQPNGVIAIAVFLNESHDDNAVFSPLINLLPQVIYKGSECKLCSFDFQTFFPVAEKTKEFWMYEGSETTDPFRETVNWIVIRAALPISSHQLDKLREVRAGRYDEEFSDKVPMKPLRPIQNPSSRTIQSSFRSVAGAPDLGFRQ&lt;/protein&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example8">
+                                <h3 class="title is-5">Antibody design and optimization (Section 4.3)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Using antigen &lt;protein&gt;TQVCTGTDMKLR…GESSEDCQS&lt;/protein&gt; and antibody frameworks &lt;antibody&gt; IVLTQTPS…LAVYYC&lt;/antibody&gt; and &lt;antibody&gt;FGGGTRLEIEVQ&lt;/antibody&gt;, create the CDR3 regions.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;antibody&gt;QQYSNYPWT&lt;/antibody&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example9">
+                                <h3 class="title is-5">Composition to material generation (Section 5.2)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Build a material that has Li, Ti, Mn, Fe, O.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;material&gt; Li Li Li Li Ti Ti Ti Mn Mn Fe Fe Fe O O O O O O O O O O O O O O O O &lt;sg8&gt; &lt;/material&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example10">
+                                <h3 class="title is-5">Material generation with given bulk modulus (Section 5.3)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Construct the composition for a material with a specified bulk modulus of 86.39 GPa.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;material&gt; Se Se Pd Sc &lt;sg164&gt; &lt;/material&gt;</p>
+                                <p>Design material with given bulk modulus.</p>
+                            </div>
+                            
+                            <div class="box" id="example11">
+                                <h3 class="title is-5">Guide RNA design (Section 6.2)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence.</p>
+                                <p>&lt;dna&gt;GACTGGCACCAG…CCCTCGC&lt;/dna&gt;</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AGACACAGCGGGTGCTCTGC&lt;/rna&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example12">
+                                <h3 class="title is-5">Protein binding RNA design (Section 6.3)</h3>
+                                <p class="break-word"><strong>Instructions:</strong> Given &lt;protein&gt;MSEY…SSGWGM&lt;/protein&gt;, create an RNA molecule that binds to it.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AAACAGG…CGTACGACA&lt;/rna&gt;</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
