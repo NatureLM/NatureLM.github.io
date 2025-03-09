@@ -113,6 +113,14 @@
             color: #805ad5; /* Purple for protein sequences */
             font-weight: bold;
         }
+        .dna {
+            color: #33098b; /* Purple for protein sequences */
+            font-weight: bold;
+        }
+        .rna {
+            color: #33098b; /* Purple for protein sequences */
+            font-weight: bold;
+        }
         .mol {
             color: #e53e3e; /* Red for molecule sequences */
             font-weight: bold;
@@ -609,14 +617,36 @@
                     
                     
                     <h3 id="rna">RNA Design</h3>
-                    <p>Guide RNA (gRNA) is essential in CRISPR-Cas9 gene editing, directing the Cas9 nuclease to a specific genomic site. It consists of a crispr RNA (crRNA), a ~20-nucleotide sequence complementary to the target DNA, and a tracrRNA, which binds Cas9. We show that NatureLM can design crRNA that (1) is 17 to 24 nucleotides long, (2) matches a region in the given DNA, and (3) is followed by an "NGG" Protospacer Adjacent Motif (PAM). N represents a nucleotide base that could be any of the four standard bases: adenine (A), cytosine (C), guanine (G), or thymine (T). The example figure below shows the NatureLM designed guide RNA satisfies the above three criteria.</p>
-                    <img src="static/images/grna.png"/>
-                    
+                    <div class="box">
+                        <h4>Guide RNA design</h4>
+                    <p>
+                        Guide RNA (gRNA) plays a critical role in CRISPR-Cas9 gene editing by directing the Cas9 nuclease to a specific genomic target site. A gRNA consists of two components: a crispr RNA (crRNA), which is approximately 20 nucleotides long and complementary to the target DNA sequence, and a tracrRNA, which binds to Cas9. Using NatureLM, we can efficiently design gRNA sequences with the following example:
+                    </p>
+                    <pre><code>
+                    <span class="instruction">Instruction:</span> Generate a guide RNA for targeting the DNA sequence <span class="dna">&lt;dna&gt;GACTGGCACCAG...CCCTCGC&lt;/dna&gt;</span>
+                    <span class="instruction">Response:</span> &lt;rna&gt;AGACACAGCGGGUGCUCUGC&lt;/rna&gt;
+                    </code></pre>
+                    <p>
+                        A valid crRNA must meet the following criteria: 
+                        <ol>
+                            <li>Be 17 to 24 nucleotides long.</li>
+                            <li>Match a specific region in the provided DNA sequence.</li>
+                            <li>Be followed by an "NGG" Protospacer Adjacent Motif (PAM) in the DNA sequence, where "N" represents any of the four standard nucleotide bases: adenine (A), cytosine (C), guanine (G), or thymine (T).</li>
+                        </ol>
+                        The example figure below demonstrates that the guide RNA designed by NatureLM satisfies all these criteria. Notably, NatureLM achieves an impressive accuracy of 95.7&#37; in designing valid gRNAs.
+                    </p>
+                    <figure style="text-align: center; margin: 20px 0;">
+                        <img src="static/images/grna.png" alt="Guide RNA Design" style="max-width: 100%; height: auto;"/>
+                        <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                            Figure 7: Visualization of the designed guide RNA (gRNA) structure.
+                        </figcaption>
+                    </figure>
+                    </div>
                     <hr/>
 
                     <!--- BELOW ARE OLD EXAMPLES-->
                     <div id="more" class="collapsible-section">
-                        <button class="collapse-btn">Click to show more examples</button>
+                        <button class="collapse-btn"><h3>Click to show more examples</h3></button>
                         <div class="collapsible-content">
                             
                             <div class="box" id="example1">
