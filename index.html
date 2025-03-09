@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
     <!-- Replace the content tag with appropriate information -->
-    <meta name="description" content="NatureLM is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks.">
-    <meta property="og:title" content="NatureLM: Deciphering the Language of Nature for Scientific Discovery" />
-    <meta property="og:description" content="NatureLM is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks." />
+    <meta name="description" content="Nature Language Model (NatureLM) is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks.">
+    <meta property="og:title" content="Nature Language Model: Deciphering the Language of Nature for Scientific Discovery" />
+    <meta property="og:description" content="Nature Language Model (NatureLM) is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks." />
     <meta property="og:url" content="NatureLM.github.io" />
     <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
     <!-- <meta property="og:image" content="static/image/your_banner_image.png" />
@@ -15,8 +15,8 @@
     <meta property="og:image:height" content="630" /> -->
 
 
-    <meta name="twitter:title" content="NatureLM: Deciphering the Language of Nature for Scientific Discovery">
-    <meta name="twitter:description" content="NatureLM is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks.">
+    <meta name="twitter:title" content="Nature Language Model: Deciphering the Language of Nature for Scientific Discovery">
+    <meta name="twitter:description" content="Nature Language Model (NatureLM) is a sequence-based science foundation model designed for scientific discovery, integrating data from multiple scientific domains to enable various applications including molecule and protein generation, cross-domain design, and state-of-the-art performance in scientific tasks.">
     <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
     <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
     <meta name="twitter:card" content="summary_large_image"> -->
@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>NatureLM: Deciphering the Language of Nature for Scientific Discovery</title>
+    <title>Nature Language Model: Deciphering the Language of Nature for Scientific Discovery</title>
     <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -45,22 +45,165 @@
             word-break: break-word;
             hyphens: manual;
         }
+        .toc-container {
+            position: fixed;
+            width: 230px; /* Slightly increased width to accommodate bullets */
+            z-index: 100;
+            display: none; /* Initially hidden, JavaScript will show it */
+        }
+        .toc {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-height: 80vh; /* Limit height to 80% of viewport height */
+            overflow-y: auto; /* Add scrollbar if content is too tall */
+        }
+        .examples-section {
+            padding-left: 250px; /* Increased to match wider TOC */
+        }
+        /* Adjustments for the content area to avoid overlap */
+        .examples-content {
+            width: 100%;
+        }
+        /* For smaller screens, revert to normal layout */
+        @media (max-width: 768px) {
+            .toc-container {
+                position: static;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .examples-section {
+                padding-left: 0;
+            }
+        }
+        /* Style for TOC list items to add bullet points */
+        .toc ul {
+            list-style-type: disc;
+            padding-left: 15px; /* Reduced padding to prevent horizontal scrollbar */
+            margin-left: 0;
+        }
+        .toc ul li {
+            margin-bottom: 5px;
+            font-size: 0.95em; /* Slightly smaller font size */
+        }
+        .pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin: 0; /* Removes extra margin around pre block */
+        }
+        .pre code {
+            display: block;
+            text-align: left; /* Ensures left alignment for code */
+            white-space: pre-wrap; /* Allows wrapping of long lines */
+            word-wrap: break-word; /* Ensures proper breaking of long words if needed */
+            overflow-x: auto; /* Keeps horizontal scrolling as a fallback for very long unbreakable content */
+        }
+        .instruction {
+            color: #d53f8c; /* Pink for instructions */
+            font-weight: bold;
+        }
+        .response {
+            color: #38a169; /* Green for responses */
+            font-weight: bold;
+        }
+        .protein {
+            color: #805ad5; /* Purple for protein sequences */
+            font-weight: bold;
+        }
+        .mol {
+            color: #e53e3e; /* Red for molecule sequences */
+            font-weight: bold;
+        }
+        .frag {
+            color: #e53e3e; /* Red for fragments */
+            font-weight: bold;
+        }
+        /* Styles for the collapsible section */
+        .collapsible-section {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        .collapse-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #333;
+            text-align: left;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .collapse-btn:hover {
+            background-color: #e8e8e8;
+        }
+        
+        .collapse-btn:after {
+            content: '\002B'; /* Plus sign */
+            float: right;
+            font-weight: bold;
+        }
+        
+        .collapse-btn.active:after {
+            content: '\2212'; /* Minus sign */
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
     </style>
 
-    <!--Azure Application Insigts-->
-    <script type="text/javascript">
-        !(function (cfg){function e(){cfg.onInit&&cfg.onInit(n)}var x,w,D,t,E,n,C=window,O=document,b=C.location,q="script",I="ingestionendpoint",L="disableExceptionTracking",j="ai.device.";"instrumentationKey"[x="toLowerCase"](),w="crossOrigin",D="POST",t="appInsightsSDK",E=cfg.name||"appInsights",(cfg.name||C[t])&&(C[t]=E),n=C[E]||function(g){var f=!1,m=!1,h={initialize:!0,queue:[],sv:"8",version:2,config:g};function v(e,t){var n={},i="Browser";function a(e){e=""+e;return 1===e.length?"0"+e:e}return n[j+"id"]=i[x](),n[j+"type"]=i,n["ai.operation.name"]=b&&b.pathname||"_unknown_",n["ai.internal.sdkVersion"]="javascript:snippet_"+(h.sv||h.version),{time:(i=new Date).getUTCFullYear()+"-"+a(1+i.getUTCMonth())+"-"+a(i.getUTCDate())+"T"+a(i.getUTCHours())+":"+a(i.getUTCMinutes())+":"+a(i.getUTCSeconds())+"."+(i.getUTCMilliseconds()/1e3).toFixed(3).slice(2,5)+"Z",iKey:e,name:"Microsoft.ApplicationInsights."+e.replace(/-/g,"")+"."+t,sampleRate:100,tags:n,data:{baseData:{ver:2}},ver:undefined,seq:"1",aiDataContract:undefined}}var n,i,t,a,y=-1,T=0,S=["js.monitor.azure.com","js.cdn.applicationinsights.io","js.cdn.monitor.azure.com","js0.cdn.applicationinsights.io","js0.cdn.monitor.azure.com","js2.cdn.applicationinsights.io","js2.cdn.monitor.azure.com","az416426.vo.msecnd.net"],o=g.url||cfg.src,r=function(){return s(o,null)};function s(d,t){if((n=navigator)&&(~(n=(n.userAgent||"").toLowerCase()).indexOf("msie")||~n.indexOf("trident/"))&&~d.indexOf("ai.3")&&(d=d.replace(/(\/)(ai\.3\.)([^\d]*)$/,function(e,t,n){return t+"ai.2"+n})),!1!==cfg.cr)for(var e=0;e<S.length;e++)if(0<d.indexOf(S[e])){y=e;break}var n,i=function(e){var a,t,n,i,o,r,s,c,u,l;h.queue=[],m||(0<=y&&T+1<S.length?(a=(y+T+1)%S.length,p(d.replace(/^(.*\/\/)([\w\.]*)(\/.*)$/,function(e,t,n,i){return t+S[a]+i})),T+=1):(f=m=!0,s=d,!0!==cfg.dle&&(c=(t=function(){var e,t={},n=g.connectionString;if(n)for(var i=n.split(";"),a=0;a<i.length;a++){var o=i[a].split("=");2===o.length&&(t[o[0][x]()]=o[1])}return t[I]||(e=(n=t.endpointsuffix)?t.location:null,t[I]="https://"+(e?e+".":"")+"dc."+(n||"services.visualstudio.com")),t}()).instrumentationkey||g.instrumentationKey||"",t=(t=(t=t[I])&&"/"===t.slice(-1)?t.slice(0,-1):t)?t+"/v2/track":g.endpointUrl,t=g.userOverrideEndpointUrl||t,(n=[]).push((i="SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)",o=s,u=t,(l=(r=v(c,"Exception")).data).baseType="ExceptionData",l.baseData.exceptions=[{typeName:"SDKLoadFailed",message:i.replace(/\./g,"-"),hasFullStack:!1,stack:i+"\nSnippet failed to load ["+o+"] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: "+(b&&b.pathname||"_unknown_")+"\nEndpoint: "+u,parsedStack:[]}],r)),n.push((l=s,i=t,(u=(o=v(c,"Message")).data).baseType="MessageData",(r=u.baseData).message='AI (Internal): 99 message:"'+("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) ("+l+")").replace(/\"/g,"")+'"',r.properties={endpoint:i},o)),s=n,c=t,JSON&&((u=C.fetch)&&!cfg.useXhr?u(c,{method:D,body:JSON.stringify(s),mode:"cors"}):XMLHttpRequest&&((l=new XMLHttpRequest).open(D,c),l.setRequestHeader("Content-type","application/json"),l.send(JSON.stringify(s)))))))},a=function(e,t){m||setTimeout(function(){!t&&h.core||i()},500),f=!1},p=function(e){var n=O.createElement(q),e=(n.src=e,t&&(n.integrity=t),n.setAttribute("data-ai-name",E),cfg[w]);return!e&&""!==e||"undefined"==n[w]||(n[w]=e),n.onload=a,n.onerror=i,n.onreadystatechange=function(e,t){"loaded"!==n.readyState&&"complete"!==n.readyState||a(0,t)},cfg.ld&&cfg.ld<0?O.getElementsByTagName("head")[0].appendChild(n):setTimeout(function(){O.getElementsByTagName(q)[0].parentNode.appendChild(n)},cfg.ld||0),n};p(d)}cfg.sri&&(n=o.match(/^((http[s]?:\/\/.*\/)\w+(\.\d+){1,5})\.(([\w]+\.){0,2}js)$/))&&6===n.length?(d="".concat(n[1],".integrity.json"),i="@".concat(n[4]),l=window.fetch,t=function(e){if(!e.ext||!e.ext[i]||!e.ext[i].file)throw Error("Error Loading JSON response");var t=e.ext[i].integrity||null;s(o=n[2]+e.ext[i].file,t)},l&&!cfg.useXhr?l(d,{method:"GET",mode:"cors"}).then(function(e){return e.json()["catch"](function(){return{}})}).then(t)["catch"](r):XMLHttpRequest&&((a=new XMLHttpRequest).open("GET",d),a.onreadystatechange=function(){if(a.readyState===XMLHttpRequest.DONE)if(200===a.status)try{t(JSON.parse(a.responseText))}catch(e){r()}else r()},a.send())):o&&r();try{h.cookie=O.cookie}catch(k){}function e(e){for(;e.length;)!function(t){h[t]=function(){var e=arguments;f||h.queue.push(function(){h[t].apply(h,e)})}}(e.pop())}var c,u,l="track",d="TrackPage",p="TrackEvent",l=(e([l+"Event",l+"PageView",l+"Exception",l+"Trace",l+"DependencyData",l+"Metric",l+"PageViewPerformance","start"+d,"stop"+d,"start"+p,"stop"+p,"addTelemetryInitializer","setAuthenticatedUserContext","clearAuthenticatedUserContext","flush"]),h.SeverityLevel={Verbose:0,Information:1,Warning:2,Error:3,Critical:4},(g.extensionConfig||{}).ApplicationInsightsAnalytics||{});return!0!==g[L]&&!0!==l[L]&&(e(["_"+(c="onerror")]),u=C[c],C[c]=function(e,t,n,i,a){var o=u&&u(e,t,n,i,a);return!0!==o&&h["_"+c]({message:e,url:t,lineNumber:n,columnNumber:i,error:a,evt:C.event}),o},g.autoExceptionInstrumented=!0),h}(cfg.cfg),(C[E]=n).queue&&0===n.queue.length?(n.queue.push(e),n.trackPageView({})):e();})({
-          src: "https://js.monitor.azure.com/scripts/b/ai.3.gbl.min.js",
-          // name: "appInsights", // Global SDK Instance name defaults to "appInsights" when not supplied
-          // ld: 0, // Defines the load delay (in ms) before attempting to load the sdk. -1 = block page load and add to head. (default) = 0ms load after timeout,
-          // useXhr: 1, // Use XHR instead of fetch to report failures (if available),
-          // dle: true, // Prevent the SDK from reporting load failure log
-          crossOrigin: "anonymous", // When supplied this will add the provided value as the cross origin attribute on the script tag
-          // onInit: null, // Once the application insights instance has loaded and initialized this callback function will be called with 1 argument -- the sdk instance (DON'T ADD anything to the sdk.queue -- As they won't get called)
-          // sri: false, // Custom optional value to specify whether fetching the snippet from integrity file and do integrity check
-          cfg: { // Application Insights Configuration
-            connectionString: "InstrumentationKey=4c9c654c-a3d7-4076-acce-77298d785176;IngestionEndpoint=https://westus3-1.in.applicationinsights.azure.com/;ApplicationId=6cebef72-3b7e-44e3-9648-187ea23533e4"
-        }});
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocContainer = document.querySelector('.toc-container');
+            const tocAlignTopSection = document.querySelector('.examples-section');
+            const tocAlignTopHeading = document.querySelector('#method-heading');
+            
+            function updateTOCPosition() {
+                // Get the position of the Examples heading
+                const headingRect = tocAlignTopHeading.getBoundingClientRect();
+                
+                // Check if any part of the examples section is in view
+                const tocAlignTopSectionRect = tocAlignTopSection.getBoundingClientRect();
+                const isExamplesVisible = 
+                    tocAlignTopSectionRect.top < window.innerHeight && 
+                    tocAlignTopSectionRect.bottom > 0;
+                
+                if (isExamplesVisible) {
+                    tocContainer.style.display = 'block';
+                    
+                    // Calculate the position for the TOC container
+                    // If the heading is in view, align TOC with it
+                    if (headingRect.top > 0) {
+                        tocContainer.style.top = headingRect.top + 'px';
+                        tocContainer.style.left = '20px';
+                    } else {
+                        // If heading is scrolled out of view (above viewport), set TOC to fixed position
+                        tocContainer.style.top = '20px';
+                        tocContainer.style.left = '20px';
+                    }
+                } else {
+                    tocContainer.style.display = 'none';
+                }
+            }
+            
+            // Update on scroll
+            window.addEventListener('scroll', updateTOCPosition);
+            window.addEventListener('resize', updateTOCPosition);
+            
+            // Initial positioning
+            updateTOCPosition();
+        });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -68,6 +211,28 @@
     <script src="static/js/bulma-carousel.min.js"></script>
     <script src="static/js/bulma-slider.min.js"></script>
     <script src="static/js/index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Existing TOC positioning code
+            // ...existing code...
+            
+            // Setup for collapsible section
+            const collapseBtn = document.querySelector('.collapse-btn');
+            const collapsibleContent = document.querySelector('.collapsible-content');
+            
+            if (collapseBtn) {
+                collapseBtn.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    
+                    if (collapsibleContent.style.maxHeight) {
+                        collapsibleContent.style.maxHeight = null;
+                    } else {
+                        collapsibleContent.style.maxHeight = collapsibleContent.scrollHeight + "px";
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -77,8 +242,7 @@
             <div class="container is-max-desktop">
                 <div class="columns is-centered">
                     <div class="column has-text-centered">
-                        <h1 class="title is-1 publication-title">NatureLM: Deciphering the Language of Nature for
-                            Scientific Discovery</h1>
+                        <h1 class="title is-1 publication-title">Nature Language Model: Deciphering the Language of Nature for Scientific Discovery (Dogfood version)</h1>
                         <div class="is-size-5 publication-authors">
                             <!-- Paper authors -->
                             <span class="author-block">NatureLM Team </span>
@@ -111,6 +275,17 @@
                                         <span>arXiv</span>
                                     </a>
                                 </span>
+
+                            <!-- ArXiv abstract Link -->
+                            <span class="link-block">
+                                <a href="https://github.com/NatureLM/Resources/tree/main/DailyUpdatePaper" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="fa-regular fa-bell"></i>
+                                    </span>
+                                    <span>Daily update version</span>
+                                </a>
+                            </span>
                             </div>
                         </div>
                     </div>
@@ -118,6 +293,18 @@
             </div>
         </div>
     </section>
+
+    <!-- Paper poster -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container">
+                <div style="text-align: center;">
+                    <img src="static/images/NLM-overview.png" style="width: 75%; height: auto;"/>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End paper poster -->
 
     <!-- Highlight section -->
     <section class="section hero is-light">
@@ -127,7 +314,7 @@
                     <h2 class="title is-3">NatureLM Highlights</h2>
                     <div class="content has-text-justified">
                         <p>
-                            NatureLM, developed by Microsoft Research AI for Science, is a groundbreaking sequence-based science foundation model designed to unify multiple scientific domains, including small molecules, materials, proteins, DNA and RNA. This innovative model leverages the "language of nature" to enable scientific discovery through text-based instructions.
+                            Nature Language Model (NatureLM), developed by Microsoft Research AI for Science, is a groundbreaking sequence-based science foundation model designed to unify multiple scientific domains, including small molecules, materials, proteins, DNA and RNA. This innovative model leverages the "language of nature" to enable scientific discovery through text-based instructions.
                         </p>
                         <p><strong>Key Features:</strong></p>
                         <ul>
@@ -184,100 +371,341 @@
     <!-- End paper abstract -->
 
     
-    <!-- Paper poster -->
-    <section class="hero is-small">
-        <div class="hero-body">
-            <div class="container">
-                <div style="text-align: center;">
-                    <img src="static/images/NLM-overview.png" style="width: 100%; height: auto;"/>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--End paper poster -->
 
 
     <!-- Examples   -->
-    <section class="section">
-        <div class="container is-max-desktop">
-            <h2 class="title">Examples</h2>
-            <div class="content">
-                <p>Researchers can utilize the instructions provided to interact with NatureLM.</p>
-                <div class="box">
-                    <h3 class="title is-5">Generate molecule with given text compound properties (Section 3.2) </h3>
-                    <p><strong>Instruction:</strong> Generate a molecule with four hydrogen bond donors.</p>
-                    <p><strong>Response:</strong> <span>C(C[C@@H](C(=O)O)N)CN=C(N)N</span> </p>
-                    <p>One can replace `four hydrogen bonds ` to other properties like `QED 0.5`, `TPSA 90`, `three hydrogen bond donors`, etc.</p>
+    <section class="section examples-section" id="examples">
+        <div class="toc-container">
+            <div class="toc">
+                <h3 class="title is-5">Table of Contents</h3>
+                <ul>
+                    <li><a href="#method-heading">Method</a></li>
+                    <li><a href="#drug">Drug Discovery</a></li>
+                    <li><a href="#protein">Protein Design</a></li>
+                    <li><a href="#material">Material Design</a></li>
+                    <li><a href="#rna">RNA Design</a></li>
+                    <li><a href="#more">More Examples</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="method-content">
+            <div class="container is-max-desktop">
+                <h2 class="title" id="method-heading">How NatureLM works</h2>
+                <div class="content">
+                    <p>Built within a GPT-style framework, NatureLM extends the power of conventional large language models by:
+                        <ul>
+                        <li>Pre-training on multi-scientific-domain data: NatureLM extends the pre-training of existing large language models using hundreds of billions of curated tokens from biology, chemistry, and materials science, building a robust foundation of cross-disciplinary knowledge while preserving the capabilities of the original models.</li>
+                        <li>Instruction tuning for task adaptability: The model is fine-tuned on millions of question–answer pairs to better understand text-based prompts and generate relevant, contextually appropriate responses.</li>
+                        <li>Custom fine-tuning for specialized tasks: Researchers can further tailor NatureLM to specific goals using techniques like reinforcement learning or domain-specific fine-tuning for optimal performance.</li>
+                        </ul>
+                    </p>
+                    <p>NatureLM comes in three different sizes—1B, 8B, and 46.7B (an 8x7B mixture of expert model) parameters—providing flexibility based on computational resources and the scope of a given project. Across 22 categories of scientific tasks, the larger models generally demonstrate higher performance, demonstrating the potential of continuously improved performance from more data and larger model. </p>
+                    <p>Users can interact with NatureLM to facilitate scientific discovery and exploration. We offer several applications, including drug discovery, protein design, material design, and RNA design, enabling breakthroughs across diverse fields.</p>
                 </div>
-                <!-- New examples start here -->
-                <div class="box">
-                    <h3 class="title is-5">Protein sequence to full molecule design (Section 3.4)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Produce a compound guided by the target.
-                    &lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt; </p>
-                    <p class="break-word"><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
+            </div>
+        </div>
+        <div class="examples-content">
+            <div class="container is-max-desktop">
+                <div style="height: 2rem;"></div>
+                <h2 class="title" id="examples-heading">Applications</h2>
+                <div class="content">
+                    <h3 id="drug">Drug Discovery</h3>
+                    <div class="box">
+                        <h4>Protein to compound </h4>
+                        <p>Designing small molecules based on an input protein sequence is an exciting and promising challenge in drug discovery, especially when structural information is unavailable or incomplete. NatureLM addresses this task by enabling both full molecule generation and molecular fragment generation, using the protein target sequence as input. This process, known as "sequence-to-compound," aims to directly design potential drug candidates by leveraging the protein's amino acid sequence to generate molecules with strong binding affinity and favorable properties. </p>
+<pre><code>
+# Scenario 1: Complete molecule generation
+<span class="instruction">Instruction:</span> Produce a compound guided by the target <span class="protein">&lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt;</span>
+<span class="response">Response:</span> <span class="mol">&lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</span>
+
+# Scenario 2: Molecular fragment generation
+<span class="instruction">Instruction:</span> Design a compound with reference to the target  <span class="protein">&lt;protein&gt;DTKEQRILR...EKAIYQGP&lt;/protein&gt;</span>  and the fragment <span class="frag">&lt;fragA&gt;O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12&lt;/fragA&gt;</span>
+<span class="response">Response:</span> <span class="frag">&lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</span>
+</code></pre>
+                        <p>We evaluated NatureLM on a held-out test set by generating an equal number of small-molecule ligands for each protein target. The generated compounds were assessed using:
+                            <ul>
+                                <li>Docking Score: Calculated by AutoDock Vina, which estimates the binding affinity of the ligand to the protein. Lower scores indicate better binding affinity.</li>
+                                <li>Synthetic Accessibility Score (SAS): A measure of the synthetic feasibility of the generated compounds, calculated using RDKit. Lower scores indicate easier synthesis.</li>
+                            </ul>    
+                        </p>
+                        <p>From the full-compound generation results, we observed that NatureLM outperforms previous classification-based methods in generating compounds with better docking scores. Additionally, larger versions of NatureLM consistently produce compounds with improved binding affinity, as reflected in the docking scores. The synthetic accessibility score of NatureLM-generated compounds is generally favorable, demonstrating its ability to balance potency and synthesizability. A brief case study is presented in the accompanying video.</p>
+                        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Vina</th>
+                                    <th>SAS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>TargetDiff</td>
+                                    <td>-6.08</td>
+                                    <td>0.67</td>
+                                </tr>
+                                <tr>
+                                    <td>TamGen</td>
+                                    <td>-6.66</td>
+                                    <td>0.76</td>
+                                </tr>
+                                <tr>
+                                    <td>NatureLM (1B)</td>
+                                    <td>-6.8</td>
+                                    <td>0.82</td>
+                                </tr>
+                                <tr>
+                                    <td>NatureLM (8B)</td>
+                                    <td>-6.92</td>
+                                    <td>0.81</td>
+                                </tr>
+                                <tr>
+                                    <td>NatureLM (8x7B)</td>
+                                    <td>-6.95</td>
+                                    <td>0.82</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <figure style="text-align: center; margin: 20px 0;">
+                            <video controls style="width: 60%;">
+                                <source src="static/video/seq_to_drug.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                            <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                                Video 1: Design compounds using the protein sequence as input.
+                            </figcaption>
+                        </figure>
+                        <p>For molecular fragment generation, we selected three PDB files published after May 2024 to ensure they were not included in our training data. Using the target sequence and the fragment we aimed to retain, we generated molecular fragments. The results, demonstrated in the figure below, show that larger versions of NatureLM consistently yield better outcomes. </p>
+                        <figure style="text-align: center; margin: 20px 0;">
+                            <img src="static/images/fragment_docking3_rdkit.svg" alt="Fragment Docking" style="max-width: 100%; height: auto;">
+                            <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                                Figure 1: Designing compounds based on the target protein sequence and specific fragments to retain.</figcaption>
+                        </figure>
+                        <!-- <p><img src="static/images/fragment_docking3_rdkit.svg"></p> -->
+                        <!-- <img src="static/images/fragment_docking3_rdkit.svg" alt="Divider" style="display: block; margin: 20px auto; width: 100%; max-width: 600px;"> -->
+                   
+                    </div>
+                    <div class="box">
+                        <h4>Text-Driven Generation and Optimization </h4>
+                        <p>Optimizing the binding affinity of a drug compound is a critical step in drug discovery, as it directly impacts the effectiveness and specificity of the compound for its biological target. Higher binding affinity often translates to improved efficacy and lower required dosages, which can reduce potential side effects. This process, however, is traditionally resource-intensive and time-consuming.</p>
+                        <p>With NatureLM, researchers can streamline this process by interacting with the model using natural language. For example:</p>
+                        <pre><code>
+<span class="instruction">Instruction:</span> Design a compound with reference to the target  <span class="protein">&lt;protein&gt;DTKEQRILR...EKAIYQGP&lt;/protein&gt;</span>  and the fragment <span class="frag">&lt;fragA&gt;O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12&lt;/fragA&gt;</span>
+<span class="response">Response:</span> <span class="frag">&lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</span>
+                        </code></pre>
+                        <p>NatureLM recommends the SMILES representations of candidate compounds with potentially improved binding affinity. Users can specify the desired number of candidates for generation and further evaluate them using methods such as docking, Free Energy Perturbation (FEP), Structure-Activity Relationship (SAR) analysis, or expert review. In two demonstrated cases, NatureLM successfully identified compounds that aligned with previously validated results from wet-lab experiments, highlighting its potential to propose viable candidates. Additionally, NatureLM can design entirely new compounds with superior docking scores, with further findings currently awaiting experimental validation.</p>
+                        <figure style="text-align: center; margin: 20px 0;">
+                            <img src="static/images/binding-affinity-optim.svg" alt="Binding affinity optimzation" style="max-width: 100%; height: auto;">
+                            <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                                Figure 2: Binding affinity optimization. We explore two targets: Catechol O-methyltransferase and Beta-lactamase class C. "Input molecule" refers to the molecule being optimized. "Wet-lab verified" output denotes the output molecule validated with improved binding affinity through wet-lab experiments. "Improved docking score" represents the results with better docking scores compared to the previous two compounds.
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <h3 id="protein">Protein Design</h3>
+                    <div class="box">
+                    <h4 id="protein-sol">(In)Soluble and stable protein design</h4>
+                    <p>We can chat with NatureLM to design proteins:
+<pre><code>
+<span class="instruction">Instruction:</span> I require a stable protein sequence, kindly generate one.
+<span class="instruction">Instruction:</span> Generate a soluble protein sequence.
+<span class="instruction">Instruction:</span> Produce a protein sequence that is not soluble.
+</code></pre>
+                    Several showcases demonstrating these capabilities are provided below.
+                    <figure style="text-align: center; margin: 20px 0;">
+                        <img src="static/images/prot_case.png" alt="Protein Case" style="max-width: 100%; height: auto;">
+                        <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                            Figure 3: Generating stable, soluble, and insoluble proteins using text as input. The sequences are folded using OmegaFold.
+                        </figcaption>
+                    </figure>
+                        Additionally, we utilize SFM-Protein to train a predictor that determines whether an input protein is stable. The success rates for the 1B, 8B, and 8x7B models are 64.4%, 65.7%, and 81.2%, respectively. These results demonstrate that larger models can lead to better performance.
+                    </p>
+                    </div>
+                    <div class="box">
+                    <h4 id="protein-heme">Heme-binding protein design</h4>
+                    <p>
+                        Heme is an essential cofactor with critical roles in oxygen transport, electron transfer, and enzymatic activity. We use NatureLM to design proteins that can bind to heme:
+                    </p>
+<pre><code>
+<span class="instruction">Instruction:</span> Design a heme-binding protein sequence.  
+<span class="response">Response:</span> <span class="protein">&lt;protein&gt;MSAAEGAVVFSEEKEALVLK...&lt;/protein&gt;</span>
+<span class="instruction">Instruction:</span> Generate a protein that can bind to <span class="mol">&lt;mol&gt;[Fe+2].C=CC1=C(C)c2cc3[n-]c(cc4[n-]c(cc5nc(cc1n2)C(C)...&lt;/mol&gt;</span>
+<span class="response">Response:</span> <span class="protein">&lt;protein&gt;ETIGKRVFVHYCHGCHSQNALGI...&lt;/protein&gt;</span>
+</code></pre>
+                    <p>After generation, we use NatureLM's protein-to-description function to annotate the generated sequences. Only the sequences containing keywords related to heme are retained for further analysis. Subsequently, we employ Phoenix to predict the complex structure of the generated protein with the heme group. Following this, we evaluate the remaining candidate proteins.
+                    </p>
+                    <p>
+                    Among the generated proteins, we identify a promising candidate with a sequence similarity of 0.55 to the NR database. Interestingly, while the sequence exhibits moderate similarity, the predicted structure closely resembles existing proteins. Notably, two histidine residues are positioned near the central iron atom of the heme group, facilitating coordinated bonding and potential functional activity.
+                    </p>
+                    <figure style="text-align: center; margin: 20px 0;">
+                        <video controls style="width: 50%;">
+                            <source src="static/video/heme_text_protein2.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                            Video 2: Designing a heme-binding protein from textual input.
+                        </figcaption>
+                    </figure>
+                    
+                    <figure style="text-align: center; margin: 20px 0;">
+                        <video controls style="width: 50%;">
+                            <source src="static/video/heme_smiles_protein.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                            Video 3: Designing a heme-binding protein from SMILES input.
+                        </figcaption>
+                    </figure>
+                    </div>
+                    <div class="box">
+                    <h4 id="protein-antibody">Antibody design</h4>
+                    <p>Antigen-to-antibody design is a pivotal task in modern biomedical research, underpinning the development of targeted therapeutics and vaccines. By leveraging computational methods to predict and engineer the complementarity-determining regions (CDRs) of antibodies, researchers can create molecules that bind antigens with high specificity and affinity. NatureLM, for instance, enables the precise engineering of the CDR3 region of an antibody using the antigen sequence and the antibody’s framework. The example input below illustrates this application:</p>
+<pre><code>
+<span class="instruction">Instruction:</span> Using antigen <span class="protein">&lt;protein&gt;RDFNNLTKGLCTINSWHIYGKDNAVRIGEDSDVLVTREPYVSCDPDECRFYALSQGTTIRGKHSNGTIHDRSQYRAL...&lt;/protein&gt;</span> and antibody frameworks <span class="protein">&lt;antibody&gt;QVQLQQSGAELVKPGASVRMSCKASGYTFTNYNMYWVKQSPGQGLEWIGI...&lt;/antibody&gt;</span>, <span class="protein">&lt;antibody&gt;WGQGTTVTV&lt;/antibody&gt;</span>, create the CDR3 regions.
+<span class="response">Response:</span> <span class="antibody">&lt;protein&gt;ARSEYGGYYAYAMDY&lt;/antibody&gt;</span>
+</code></pre>  
+                    <p>NatureLM outputs the CDR3 regions. The figure visualized antigen–antibody complex confirms that the designed CDR region interacts effectively with the antigen.</p>
+                    <figure style="text-align: center; margin: 20px 0;">
+                        <img src="static/images/antigen2antibody.png" alt="Antigen to Antibody" style="max-width: 75%; height: auto;">
+                        <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                            Figure 4: Illustration of antigen to antibody interaction.
+                        </figcaption>
+                    </figure>
+                    </div>
+                    
+
+                    <h3 id="material">Material Design</h3>
+                    <p>NatureLM enables researchers to generate materials with specified properties by using natural language instructions. This text-to-material approach is particularly promising as it streamlines the discovery process, allowing researchers to explore vast design spaces more efficiently than traditional trial-and-error methods. Below, we present two examples that demonstrate its capabilities in material composition and property </p>
+                    <h4>Generating a material with specified elements</h4>
+                    <p>In the first example, we prompt NatureLM to draft a material that includes specific elements.</p>
+<pre><code>
+<span class="instruction">Instruction:</span>  Draft a material that includes Sr, Nd, Bi, O. 
+<span class="response">Response:</span> <span class="material">&lt;material&gt; Sr Sr Sr Sr Nd Nd Bi Bi O O O O O O O O O O O O &lt;sg14&gt; &lt;/material&gt;</span>
+</code></pre>
+                    <p>This output specifies both the composition of the material (4 Sr, 2 Nd, 2 Bi, and 12 O per unit cell) and its space group (14 for this example). To further enhance its capabilities, we fine-tuned the 1B version of NatureLM, transforming it into a material structure generator referred to as NatureLM-Mat3D. NatureLM-Mat3D takes the composition and space group as input and autoregressively outputs the lattice parameters, followed by the atomic coordinates within that lattice.</p>
+                    <p>Using MatterSim to evaluate the properties of the generated structure, we found that its energy above hull (e_hull) is 0.00, confirming that it is a stable material.</p>
+                    <figure>
+                        <img src="static/images/mat_3d.png" alt="3D Material Representation" />
+                        <figcaption>Figure 5. 3D representation of the predicted material.</figcaption>
+                    </figure>
+
+                    <div class="box">
+                        <h4>Generating a Material with a Specified Bulk Modulus</h4>
+                        <p>Materials with an ultra-high bulk modulus are highly valued for their exceptional stiffness and incompressibility, making them critical for applications in extreme environments, industrial tools, and advanced engineering. To test NatureLM's ability to generate such materials, we tasked it with designing a material with a desired bulk modulus of 400 GPa, a value comparable to the stiffness of diamond:</p>
+<pre><code>
+<span class="instruction">Instruction:</span>  Provide the composition for a material designed to have a desired bulk modulus of 400 GPa. 
+</code></pre>                        
+                        <p>Similar to the evaluation pipeline used in the first user application, we begin by using NatureLM-Mat3D to predict the 3D atomic structure of the material. We then employ MatterSim to estimate the e_hull and bulk modulus. We manually identified cases where MatterSim predicted bulk modulus values within a 5 GPa range of the target (400Gpa here). Two such cases were selected for further validation using density functional theory (DFT) calculations.</p>
+<pre><code>
+<span class="response">Response: </span><span class="material">&lt;material&gt; Os Os Os Re &lt;sg187&gt; &lt;/material&gt;</span>
+<span class="response">Response: </span><span class="material">&lt;material&gt; Re Re Re C &lt;sg187&gt; &lt;/material&gt;</span>
+</code></pre>  
+                        <p> The DFT results revealed bulk modulus values of 390 GPa and 394 GPa, which closely align with the target value of 400 GPa. Beyond achieving the bulk modulus target, the two generated structures were confirmed to be novel compared to those available in the Materials Project database. This novelty underscores NatureLM's potential for discovering new materials with exceptional mechanical properties, thereby broadening the scope of material design and innovation.</p>
+                        <figure>
+                            <img src="static/images/high_bulk.svg" alt="High Bulk Material Diagram" />
+                            <figcaption>Figure 6. High Bulk Material Diagram</figcaption>
+                        </figure>
+                        <p>While NatureLM demonstrates significant potential in generating material compositions and predicting properties, its space group predictions are not always accurate, which can impact the precision of the resulting 3D structures and property evaluations. Despite this limitation, the method remains highly valuable as it drastically reduces the time and computational cost associated with exploring and identifying new material compositions. </p>
+                    </div>
+                    
+                    
+                    <h3 id="rna">RNA Design</h3>
+                    <p>Guide RNA (gRNA) is essential in CRISPR-Cas9 gene editing, directing the Cas9 nuclease to a specific genomic site. It consists of a crispr RNA (crRNA), a ~20-nucleotide sequence complementary to the target DNA, and a tracrRNA, which binds Cas9. We show that NatureLM can design crRNA that (1) is 17 to 24 nucleotides long, (2) matches a region in the given DNA, and (3) is followed by an "NGG" Protospacer Adjacent Motif (PAM). N represents a nucleotide base that could be any of the four standard bases: adenine (A), cytosine (C), guanine (G), or thymine (T). The example figure below shows the NatureLM designed guide RNA satisfies the above three criteria.</p>
+                    <img src="static/images/grna.png"/>
+                    
+                    <hr/>
+
+                    <!--- BELOW ARE OLD EXAMPLES-->
+                    <div id="more" class="collapsible-section">
+                        <button class="collapse-btn">Click to show more examples</button>
+                        <div class="collapsible-content">
+                            
+                            <div class="box" id="example1">
+                                <h3 class="title is-5">Generate molecule with given text compound properties (Section 3.2) </h3>
+                                <p><strong>Instruction:</strong> Generate a molecule with four hydrogen bond donors.</p>
+                                <p><strong>Response:</strong> <span>C(C[C@@H](C(=O)O)N)CN=C(N)N</span> </p>
+                                <p>One can replace `four hydrogen bonds ` to other properties like `QED 0.5`, `TPSA 90`, `three hydrogen bond donors`, etc.</p>
+                            </div>
+                            
+                            <div class="box" id="example2">
+                                <h3 class="title is-5">Protein sequence to full molecule design (Section 3.4)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Produce a compound guided by the target.
+                                &lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt; </p>
+                                <p class="break-word"><strong>Response:</strong> &lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example3">
+                                <h3 class="title is-5">Protein sequence to molecular fragment generation (Section 3.4)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Design a compound with reference to the target &lt;protein&gt;DTKEQRILR….EKAIYQGP&lt;/protein&gt; and the fragment &lt;fragA&gt; O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12 &lt;/fragA&gt;.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</p>
+                                <p>Here, ''[*:digit]'' refers to the connection point of the molecular fragment.</p>
+                            </div>
+                            
+                            <div class="box" id="example4">
+                                <h3 class="title is-5">Binding affinity improvement (Section 3.5)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example5">
+                                <h3 class="title is-5">Metabolism optimization (Section 3.6)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Transform &lt;mol&gt;COCCn1c(=O)c(-c2ccccc2)nc2cnc(N3CCOCC3)nc21&lt;/mol&gt; to yield lower CYP1A2 inhibition and present a better metabolic safety record.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;mol&gt;COc1ccc(&#8209;c2nc3cnc(N4CCOCC4)nc3n(Cc3cccc(OC)c3)c2=O)cc1&lt;/mol&gt;</p>
+                                <p>You can replace CYP to the enzymes you wish as input.</p>
+                            </div>
+                            
+                            <div class="box" id="example6">
+                                <h3 class="title is-5">Reaction prediction (Section 3.7)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Please suggest possible reactants for the given product</p>
+                                <p class="break-word">&lt;product&gt;CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1&lt;/product&gt;.</p>
+                                <p><strong>Response:</strong> &lt;reactant&gt;CC(=O)c1ccc2[nH]ccc2c1.CC(C)(C)OC(=O)OC(=O)OC(C)(C)C&lt;/reactant&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example7">
+                                <h3 class="title is-5">Protein generation (Section 4.2)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> I require a stable protein sequence, kindly generate one.</p>
+                                <p class="break-word"><strong>Response:</strong>&lt;protein&gt;GSVEVKIGTDRTTASSQDEAEERARRAGARRVRIDGNEVEVEM&lt;/protein&gt;</p>
+                                <hr>
+                                <p class="break-word"><strong>Instruction:</strong> Generate a soluble protein sequence.</p>
+                                <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MSLPNIFVEELVHTPIEKQVIEIVERKGIGHPDSLADGMAEAMSRELSREYIRRFGAVLHHNTDETQIVAGRSNPQFGGGEVIEPIYVLLVGRATKFFNGEYIPTDKIALKAARDYIRQHMQNLDPELDVVFNVRLGEGSTDLQDVFRRKSGNVALANDTSFGIGFAPLSETERLVFNVERRIYEEFRKKNPAIGEDVKVMGLREKDRISLTIAAAFVDRYVANIKEYDAIKEELENFVKEISSEYTEREVEVFVNTADDYETGCVYLTVTGTSAENGDDGSVGRGNRCNGLITPGRPMSMEASSGKNPINHVGKIYNLLANQIAARIAEEVEGVEEVYVRILSQIGKPINEPKALSVQVIPKSGYDISKLERPARDIAEEMIANVGKITDMVIEGKVRTFEGHHHHHH&lt;/protein&gt;</p>
+                                <hr>
+                                <p class="break-word"><strong>Instruction:</strong> Produce a protein sequence that is not soluble.</p>
+                                <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MAFLSQLQGGFAQLKQKAEAAAPSIADSLNQLKEAPKFMESAFKTGLNKVKLDSLGKVLNVPSLGRTQSPIDIVPVITAFGEHLQNAHFEVTYESTGEFKAVNDGNSIWLMREGNSSELAISFLPEEQYHLDAVNFHWATEPMNGSEHTIGGVGYAGEMHLIHRNTRFATMADALKQPNGVIAIAVFLNESHDDNAVFSPLINLLPQVIYKGSECKLCSFDFQTFFPVAEKTKEFWMYEGSETTDPFRETVNWIVIRAALPISSHQLDKLREVRAGRYDEEFSDKVPMKPLRPIQNPSSRTIQSSFRSVAGAPDLGFRQ&lt;/protein&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example8">
+                                <h3 class="title is-5">Antibody design and optimization (Section 4.3)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Using antigen &lt;protein&gt;TQVCTGTDMKLR…GESSEDCQS&lt;/protein&gt; and antibody frameworks &lt;antibody&gt; IVLTQTPS…LAVYYC&lt;/antibody&gt; and &lt;antibody&gt;FGGGTRLEIEVQ&lt;/antibody&gt;, create the CDR3 regions.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;antibody&gt;QQYSNYPWT&lt;/antibody&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example9">
+                                <h3 class="title is-5">Composition to material generation (Section 5.2)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Build a material that has Li, Ti, Mn, Fe, O.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;material&gt; Li Li Li Li Ti Ti Ti Mn Mn Fe Fe Fe O O O O O O O O O O O O O O O O &lt;sg8&gt; &lt;/material&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example10">
+                                <h3 class="title is-5">Material generation with given bulk modulus (Section 5.3)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Construct the composition for a material with a specified bulk modulus of 86.39 GPa.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;material&gt; Se Se Pd Sc &lt;sg164&gt; &lt;/material&gt;</p>
+                                <p>Design material with given bulk modulus.</p>
+                            </div>
+                            
+                            <div class="box" id="example11">
+                                <h3 class="title is-5">Guide RNA design (Section 6.2)</h3>
+                                <p class="break-word"><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence.</p>
+                                <p>&lt;dna&gt;GACTGGCACCAG...CCCTCGC&lt;/dna&gt;</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AGACACAGCGGGTGCTCTGC&lt;/rna&gt;</p>
+                            </div>
+                            
+                            <div class="box" id="example12">
+                                <h3 class="title is-5">Protein binding RNA design (Section 6.3)</h3>
+                                <p class="break-word"><strong>Instructions:</strong> Given &lt;protein&gt;MSEY…SSGWGM&lt;/protein&gt;, create an RNA molecule that binds to it.</p>
+                                <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AAACAGG…CGTACGACA&lt;/rna&gt;</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="box">
-                    <h3 class="title is-5">Protein sequence to molecular fragment generation (Section 3.4)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Design a compound with reference to the target &lt;protein&gt;DTKEQRILR….EKAIYQGP&lt;/protein&gt; and the fragment &lt;fragA&gt; O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12 &lt;/fragA&gt;.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</p>
-                    <p>Here, ''[*:digit]'' refers to the connection point of the molecular fragment.</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Binding affinity improvement (Section 3.5)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Improve the binding affinity on Uridine-cytidine kinase 2 of &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;mol&gt;Cc1ccc(&#8209;c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Metabolism optimization (Section 3.6)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Transform &lt;mol&gt;COCCn1c(=O)c(-c2ccccc2)nc2cnc(N3CCOCC3)nc21&lt;/mol&gt; to yield lower CYP1A2 inhibition and present a better metabolic safety record.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;mol&gt;COc1ccc(&#8209;c2nc3cnc(N4CCOCC4)nc3n(Cc3cccc(OC)c3)c2=O)cc1&lt;/mol&gt;</p>
-                    <p>You can replace CYP to the enzymes you wish as input.</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Reaction prediction (Section 3.7)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Please suggest possible reactants for the given product</p>
-                    <p class="break-word">&lt;product&gt;CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1&lt;/product&gt;.</p>
-                    <p><strong>Response:</strong> &lt;reactant&gt;CC(=O)c1ccc2[nH]ccc2c1.CC(C)(C)OC(=O)OC(=O)OC(C)(C)C&lt;/reactant&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Protein generation (Section 4.2)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> I require a stable protein sequence, kindly generate one.</p>
-                    <p class="break-word"><strong>Response:</strong>&lt;protein&gt;GSVEVKIGTDRTTASSQDEAEERARRAGARRVRIDGNEVEVEM&lt;/protein&gt;</p>
-                    <hr>
-                    <p class="break-word"><strong>Instruction:</strong> Generate a soluble protein sequence.</p>
-                    <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MSLPNIFVEELVHTPIEKQVIEIVERKGIGHPDSLADGMAEAMSRELSREYIRRFGAVLHHNTDETQIVAGRSNPQFGGGEVIEPIYVLLVGRATKFFNGEYIPTDKIALKAARDYIRQHMQNLDPELDVVFNVRLGEGSTDLQDVFRRKSGNVALANDTSFGIGFAPLSETERLVFNVERRIYEEFRKKNPAIGEDVKVMGLREKDRISLTIAAAFVDRYVANIKEYDAIKEELENFVKEISSEYTEREVEVFVNTADDYETGCVYLTVTGTSAENGDDGSVGRGNRCNGLITPGRPMSMEASSGKNPINHVGKIYNLLANQIAARIAEEVEGVEEVYVRILSQIGKPINEPKALSVQVIPKSGYDISKLERPARDIAEEMIANVGKITDMVIEGKVRTFEGHHHHHH&lt;/protein&gt;</p>
-                    <hr>
-                    <p class="break-word"><strong>Instruction:</strong> Produce a protein sequence that is not soluble.</p>
-                    <p class="break-word"><strong>Response:</strong>&lt;protein&gt;MAFLSQLQGGFAQLKQKAEAAAPSIADSLNQLKEAPKFMESAFKTGLNKVKLDSLGKVLNVPSLGRTQSPIDIVPVITAFGEHLQNAHFEVTYESTGEFKAVNDGNSIWLMREGNSSELAISFLPEEQYHLDAVNFHWATEPMNGSEHTIGGVGYAGEMHLIHRNTRFATMADALKQPNGVIAIAVFLNESHDDNAVFSPLINLLPQVIYKGSECKLCSFDFQTFFPVAEKTKEFWMYEGSETTDPFRETVNWIVIRAALPISSHQLDKLREVRAGRYDEEFSDKVPMKPLRPIQNPSSRTIQSSFRSVAGAPDLGFRQ&lt;/protein&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Antibody design and optimization (Section 4.3)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Using antigen &lt;protein&gt;TQVCTGTDMKLR…GESSEDCQS&lt;/protein&gt; and antibody frameworks &lt;antibody&gt; IVLTQTPS…LAVYYC&lt;/antibody&gt; and &lt;antibody&gt;FGGGTRLEIEVQ&lt;/antibody&gt;, create the CDR3 regions.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;antibody&gt;QQYSNYPWT&lt;/antibody&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Composition to material generation (Section 5.2)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Build a material that has Li, Ti, Mn, Fe, O.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;material&gt; Li Li Li Li Ti Ti Ti Mn Mn Fe Fe Fe O O O O O O O O O O O O O O O O &lt;sg8&gt; &lt;/material&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Material generation with given bulk modulus (Section 5.3)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Construct the composition for a material with a specified bulk modulus of 86.39 GPa.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;material&gt; Se Se Pd Sc &lt;sg164&gt; &lt;/material&gt;</p>
-                    <p>Design material with given bulk modulus.</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Guide RNA design (Section 6.2)</h3>
-                    <p class="break-word"><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence.</p>
-                    <p>&lt;dna&gt;GACTGGCACCAG…CCCTCGC&lt;/dna&gt;</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AGACACAGCGGGTGCTCTGC&lt;/rna&gt;</p>
-                </div>
-                <div class="box">
-                    <h3 class="title is-5">Protein binding RNA design (Section 6.3)</h3>
-                    <p class="break-word"><strong>Instructions:</strong> Given &lt;protein&gt;MSEY…SSGWGM&lt;/protein&gt;, create an RNA molecule that binds to it.</p>
-                    <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AAACAGG…CGTACGACA&lt;/rna&gt;</p>
-                </div>
-                <!-- New examples end here -->
             </div>
         </div>
     </section>
@@ -287,9 +715,9 @@
     <section class="section" id="BibTeX">
         <div class="container is-max-desktop content">
             <h2 class="title">BibTeX</h2>
-            <pre><code>@misc{naturelm2025,
-    title={NatureLM: Deciphering the Language of Nature for Scientific Discovery}, 
-    author={Yingce Xia and Peiran Jin and Shufang Xie and Liang He and Chuan Cao and Renqian Luo and Guoqing Liu and Yue Wang and Zequn Liu and Yuan-Jyue Chen and Zekun Guo and Yeqi Bai and Pan Deng and Yaosen Min and Ziheng Lu and Hongxia Hao and Han Yang and Jielan Li and Chang Liu and Jia Zhang and Jianwei Zhu and Kehan Wu and Wei Zhang and Kaiyuan Gao and Qizhi Pei and Qian Wang and Xixian Liu and Yanting Li and Houtian Zhu and Yeqing Lu and Mingqian Ma and Zun Wang and Tian Xie and Krzysztof Maziarz and Marwin Segler and Zhao Yang and Zilong Chen and Yu Shi and Shuxin Zheng and Lijun Wu and Chen Hu and Peggy Dai and Tie-Yan Liu and Haiguang Liu and Tao Qin},
+            <pre><code>@misc{NatureLM2025,
+    title={Nature Language Model: Deciphering the Language of Nature for Scientific Discovery}, 
+    author={Yingce Xia and Peiran Jin and Shufang Xie and Liang He and Chuan Cao and Renqian Luo and Guoqing Liu and Yue Wang and Zequn Liu and Yuan-Jyue Chen and Zekun Guo and Yeqi Bai and Pan Deng and Yaosen Min and Ziheng Lu and Hongxia Hao and Han Yang and Jielan Li and Chang Liu and Jia Zhang and Jianwei Zhu and Ran Bi and Kehan Wu and Wei Zhang and Kaiyuan Gao and Qizhi Pei and Qian Wang and Xixian Liu and Yanting Li and Houtian Zhu and Yeqing Lu and Mingqian Ma and Zun Wang and Tian Xie and Krzysztof Maziarz and Marwin Segler and Zhao Yang and Zilong Chen and Yu Shi and Shuxin Zheng and Lijun Wu and Chen Hu and Peggy Dai and Tie-Yan Liu and Haiguang Liu and Tao Qin},
     year={2025},
     eprint={2502.07527},
     archivePrefix={arXiv},
