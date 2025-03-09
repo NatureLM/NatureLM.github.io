@@ -275,6 +275,17 @@
                                         <span>arXiv</span>
                                     </a>
                                 </span>
+
+                            <!-- ArXiv abstract Link -->
+                            <span class="link-block">
+                                <a href="https://github.com/NatureLM/Resources/tree/main/DailyUpdatePaper" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="fa-regular fa-bell"></i>
+                                    </span>
+                                    <span>Daily update version</span>
+                                </a>
+                            </span>
                             </div>
                         </div>
                     </div>
@@ -282,6 +293,18 @@
             </div>
         </div>
     </section>
+
+    <!-- Paper poster -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container">
+                <div style="text-align: center;">
+                    <img src="static/images/NLM-overview.png" style="width: 75%; height: auto;"/>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End paper poster -->
 
     <!-- Highlight section -->
     <section class="section hero is-light">
@@ -348,17 +371,7 @@
     <!-- End paper abstract -->
 
     
-    <!-- Paper poster -->
-    <section class="hero is-small">
-        <div class="hero-body">
-            <div class="container">
-                <div style="text-align: center;">
-                    <img src="static/images/NLM-overview.png" style="width: 100%; height: auto;"/>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--End paper poster -->
+
 
     <!-- Examples   -->
     <section class="section examples-section" id="examples">
@@ -393,14 +406,14 @@
         </div>
         <div class="examples-content">
             <div class="container is-max-desktop">
+                <div style="height: 2rem;"></div>
                 <h2 class="title" id="examples-heading">Applications</h2>
                 <div class="content">
                     <h3 id="drug">Drug Discovery</h3>
                     <div class="box">
                         <h4>Protein to compound </h4>
                         <p>Designing small molecules based on an input protein sequence is an exciting and promising challenge in drug discovery, especially when structural information is unavailable or incomplete. NatureLM addresses this task by enabling both full molecule generation and molecular fragment generation, using the protein target sequence as input. This process, known as "sequence-to-compound," aims to directly design potential drug candidates by leveraging the protein's amino acid sequence to generate molecules with strong binding affinity and favorable properties. </p>
-                        <pre>
-                            <code>
+<pre><code>
 # Scenario 1: Complete molecule generation
 <span class="instruction">Instruction:</span> Produce a compound guided by the target <span class="protein">&lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt;</span>
 <span class="response">Response:</span> <span class="mol">&lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</span>
@@ -408,8 +421,7 @@
 # Scenario 2: Molecular fragment generation
 <span class="instruction">Instruction:</span> Design a compound with reference to the target  <span class="protein">&lt;protein&gt;DTKEQRILR...EKAIYQGP&lt;/protein&gt;</span>  and the fragment <span class="frag">&lt;fragA&gt;O=c1[nH]cnc2c(O)cc([*:1])c([*:2])c12&lt;/fragA&gt;</span>
 <span class="response">Response:</span> <span class="frag">&lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</span>
-                            </code>
-                        </pre>
+</code></pre>
                         <p>We evaluated NatureLM on a held-out test set by generating an equal number of small-molecule ligands for each protein target. The generated compounds were assessed using:
                             <ul>
                                 <li>Docking Score: Calculated by AutoDock Vina, which estimates the binding affinity of the ligand to the protein. Lower scores indicate better binding affinity.</li>
@@ -422,7 +434,7 @@
                                 <tr>
                                     <th></th>
                                     <th>Vina</th>
-                                    <th>SA</th>
+                                    <th>SAS</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -453,12 +465,23 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <video controls style="width: 60%;">
-                            <source src="static/video/demo0305.mp4" type="video/mp4" />
-                        </video>
+                        <figure style="text-align: center; margin: 20px 0;">
+                            <video controls style="width: 60%;">
+                                <source src="static/video/seq_to_drug.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                            <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                                Video 1: Design compounds using the protein sequence as input.
+                            </figcaption>
+                        </figure>
                         <p>For molecular fragment generation, we selected three PDB files published after May 2024 to ensure they were not included in our training data. Using the target sequence and the fragment we aimed to retain, we generated molecular fragments. The results, demonstrated in the figure below, show that larger versions of NatureLM consistently yield better outcomes. </p>
-                        
-                        <p><img src="static/images/mol_dock.png"></p>
+                        <figure style="text-align: center; margin: 20px 0;">
+                            <img src="static/images/fragment_docking3_rdkit.svg" alt="Fragment Docking" style="max-width: 100%; height: auto;">
+                            <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                                Figure 1: Designing compounds based on the target protein sequence and specific fragments to retain.</figcaption>
+                        </figure>
+                        <!-- <p><img src="static/images/fragment_docking3_rdkit.svg"></p> -->
+                        <!-- <img src="static/images/fragment_docking3_rdkit.svg" alt="Divider" style="display: block; margin: 20px auto; width: 100%; max-width: 600px;"> -->
                    
                     </div>
                     <div class="box">
@@ -470,10 +493,16 @@
 <span class="response">Response:</span> <span class="frag">&lt;fragB&gt;Fc1ccc([*:1])cc1.Fc1ccc([*:2])cc1&lt;/fragB&gt;</span>
                         </code></pre>
                         <p>NatureLM recommends the SMILES representations of candidate compounds with potentially improved binding affinity. Users can specify the desired number of candidates for generation and further evaluate them using methods such as docking, Free Energy Perturbation (FEP), Structure-Activity Relationship (SAR) analysis, or expert review. In two demonstrated cases, NatureLM successfully identified compounds that aligned with previously validated results from wet-lab experiments, highlighting its potential to propose viable candidates. Additionally, NatureLM can design entirely new compounds with superior docking scores, with further findings currently awaiting experimental validation.</p>
-                        <p><img src="static/images/mol_optim_bind.png"/></p>
+                        <figure style="text-align: center; margin: 20px 0;">
+                            <img src="static/images/binding-affinity-optim.svg" alt="Binding affinity optimzation" style="max-width: 100%; height: auto;">
+                            <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                                Figure 2: Binding affinity optimization. We explore two targets: Catechol O-methyltransferase and Beta-lactamase class C. "Input molecule" refers to the molecule being optimized. "Wet-lab verified" output denotes the output molecule validated with improved binding affinity through wet-lab experiments. "Improved docking score" represents the results with better docking scores compared to the previous two compounds.
+                            </figcaption>
+                        </figure>
                     </div>
 
                     <h3 id="protein">Protein Design</h3>
+                    <div class="box">
                     <h4 id="protein-sol">(In)Soluble and stable protein design</h4>
                     <p>We can chat with NatureLM to design proteins:
 <pre><code>
@@ -482,11 +511,16 @@
 <span class="instruction">Instruction:</span> Produce a protein sequence that is not soluble.
 </code></pre>
                     Several showcases demonstrating these capabilities are provided below.
-                    </p>
-                    <img src="static/images/prot_case.png" />
-                    <p>
+                    <figure style="text-align: center; margin: 20px 0;">
+                        <img src="static/images/prot_case.png" alt="Protein Case" style="max-width: 100%; height: auto;">
+                        <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                            Figure 3: Generating stable, soluble, and insoluble proteins using text as input. The sequences are folded using OmegaFold.
+                        </figcaption>
+                    </figure>
                         Additionally, we utilize SFM-Protein to train a predictor that determines whether an input protein is stable. The success rates for the 1B, 8B, and 8x7B models are 64.4%, 65.7%, and 81.2%, respectively. These results demonstrate that larger models can lead to better performance.
                     </p>
+                    </div>
+                    <div class="box">
                     <h4 id="protein-heme">Heme-binding protein design</h4>
                     <p>
                         Heme is an essential cofactor with critical roles in oxygen transport, electron transfer, and enzymatic activity. We use NatureLM to design proteins that can bind to heme:
@@ -502,12 +536,27 @@
                     <p>
                     Among the generated proteins, we identify a promising candidate with a sequence similarity of 0.55 to the NR database. Interestingly, while the sequence exhibits moderate similarity, the predicted structure closely resembles existing proteins. Notably, two histidine residues are positioned near the central iron atom of the heme group, facilitating coordinated bonding and potential functional activity.
                     </p>
-                    <video controls style="width: 50%;">
-                        <source src="static/video/heme_text_protein.mp4" type="video/mp4" />
-                    </video>
-                    <video controls style="width: 50%;">
-                        <source src="static/video/heme_smiles_protein.mp4" type="video/mp4" />
-                    </video>
+                    <figure style="text-align: center; margin: 20px 0;">
+                        <video controls style="width: 50%;">
+                            <source src="static/video/heme_text_protein2.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                            Video 2: Designing a heme-binding protein from textual input.
+                        </figcaption>
+                    </figure>
+                    
+                    <figure style="text-align: center; margin: 20px 0;">
+                        <video controls style="width: 50%;">
+                            <source src="static/video/heme_smiles_protein.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                        <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                            Video 3: Designing a heme-binding protein from SMILES input.
+                        </figcaption>
+                    </figure>
+                    </div>
+                    <div class="box">
                     <h4 id="protein-antibody">Antibody design</h4>
                     <p>Antigen-to-antibody design is a pivotal task in modern biomedical research, underpinning the development of targeted therapeutics and vaccines. By leveraging computational methods to predict and engineer the complementarity-determining regions (CDRs) of antibodies, researchers can create molecules that bind antigens with high specificity and affinity. NatureLM, for instance, enables the precise engineering of the CDR3 region of an antibody using the antigen sequence and the antibody’s framework. The example input below illustrates this application:</p>
 <pre><code>
@@ -515,7 +564,13 @@
 <span class="response">Response:</span> <span class="antibody">&lt;protein&gt;ARSEYGGYYAYAMDY&lt;/antibody&gt;</span>
 </code></pre>  
                     <p>NatureLM outputs the CDR3 regions. The figure visualized antigen–antibody complex confirms that the designed CDR region interacts effectively with the antigen.</p>
-                    <img src="static/images/antigen2antibody.png"/>
+                    <figure style="text-align: center; margin: 20px 0;">
+                        <img src="static/images/antigen2antibody.png" alt="Antigen to Antibody" style="max-width: 75%; height: auto;">
+                        <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
+                            Figure 4: Illustration of antigen to antibody interaction.
+                        </figcaption>
+                    </figure>
+                    </div>
                     
 
                     <h3 id="material">Material Design</h3>
@@ -528,7 +583,10 @@
 </code></pre>
                     <p>This output specifies both the composition of the material (4 Sr, 2 Nd, 2 Bi, and 12 O per unit cell) and its space group (14 for this example). To further enhance its capabilities, we fine-tuned the 1B version of NatureLM, transforming it into a material structure generator referred to as NatureLM-Mat3D. NatureLM-Mat3D takes the composition and space group as input and autoregressively outputs the lattice parameters, followed by the atomic coordinates within that lattice.</p>
                     <p>Using MatterSim to evaluate the properties of the generated structure, we found that its energy above hull (e_hull) is 0.00, confirming that it is a stable material.</p>
-                    <img src="static/images/mat_3d.png"/>
+                    <figure>
+                        <img src="static/images/mat_3d.png" alt="3D Material Representation" />
+                        <figcaption>Figure 5. 3D representation of the predicted material.</figcaption>
+                    </figure>
 
                     <div class="box">
                         <h4>Generating a Material with a Specified Bulk Modulus</h4>
@@ -541,8 +599,11 @@
 <span class="response">Response: </span><span class="material">&lt;material&gt; Os Os Os Re &lt;sg187&gt; &lt;/material&gt;</span>
 <span class="response">Response: </span><span class="material">&lt;material&gt; Re Re Re C &lt;sg187&gt; &lt;/material&gt;</span>
 </code></pre>  
-                        <img src="static/images/high_bulk.png"/>
                         <p> The DFT results revealed bulk modulus values of 390 GPa and 394 GPa, which closely align with the target value of 400 GPa. Beyond achieving the bulk modulus target, the two generated structures were confirmed to be novel compared to those available in the Materials Project database. This novelty underscores NatureLM's potential for discovering new materials with exceptional mechanical properties, thereby broadening the scope of material design and innovation.</p>
+                        <figure>
+                            <img src="static/images/high_bulk.svg" alt="High Bulk Material Diagram" />
+                            <figcaption>Figure 6. High Bulk Material Diagram</figcaption>
+                        </figure>
                         <p>While NatureLM demonstrates significant potential in generating material compositions and predicting properties, its space group predictions are not always accurate, which can impact the precision of the resulting 3D structures and property evaluations. Despite this limitation, the method remains highly valuable as it drastically reduces the time and computational cost associated with exploring and identifying new material compositions. </p>
                     </div>
                     
@@ -633,7 +694,7 @@
                             <div class="box" id="example11">
                                 <h3 class="title is-5">Guide RNA design (Section 6.2)</h3>
                                 <p class="break-word"><strong>Instruction:</strong> Generate a guide RNA for targeting the DNA sequence.</p>
-                                <p>&lt;dna&gt;GACTGGCACCAG…CCCTCGC&lt;/dna&gt;</p>
+                                <p>&lt;dna&gt;GACTGGCACCAG...CCCTCGC&lt;/dna&gt;</p>
                                 <p class="break-word"><strong>Response:</strong> &lt;rna&gt;AGACACAGCGGGTGCTCTGC&lt;/rna&gt;</p>
                             </div>
                             
