@@ -250,7 +250,7 @@
             <div class="container is-max-desktop">
                 <div class="columns is-centered">
                     <div class="column has-text-centered">
-                        <h1 class="title is-1 publication-title">Nature Language Model: Deciphering the Language of Nature for Scientific Discovery (Dogfood version)</h1>
+                        <h1 class="title is-1 publication-title">Nature Language Model: Deciphering the Language of Nature for Scientific Discovery</h1>
                         <div class="is-size-5 publication-authors">
                             <!-- Paper authors -->
                             <span class="author-block">NatureLM Team </span>
@@ -484,7 +484,7 @@
                         </figure>
                         <p>For molecular fragment generation, we selected three PDB files published after May 2024 to ensure they were not included in our training data. Using the target sequence and the fragment we aimed to retain, we generated molecular fragments. The results, demonstrated in the figure below, show that larger versions of NatureLM consistently yield better outcomes. </p>
                         <figure style="text-align: center; margin: 20px 0;">
-                            <img src="static/images/fragment_docking3_rdkit.svg" alt="Fragment Docking" style="max-width: 100%; height: auto;">
+                            <img src="static/images/fragment_docking3_rdkit.svg" alt="Fragment Docking" style="max-width: 100%; max-width: 1000px; height: auto;">
                             <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
                                 Figure 1: Designing compounds based on the target protein sequence and specific fragments to retain.</figcaption>
                         </figure>
@@ -569,13 +569,13 @@
                     <p>Antigen-to-antibody design is a pivotal task in modern biomedical research, underpinning the development of targeted therapeutics and vaccines. By leveraging computational methods to predict and engineer the complementarity-determining regions (CDRs) of antibodies, researchers can create molecules that bind antigens with high specificity and affinity. NatureLM, for instance, enables the precise engineering of the CDR3 region of an antibody using the antigen sequence and the antibody’s framework. The example input below illustrates this application:</p>
 <pre><code>
 <span class="instruction">Instruction:</span> Using antigen <span class="protein">&lt;protein&gt;RDFNNLTKGLCTINSWHIYGKDNAVRIGEDSDVLVTREPYVSCDPDECRFYALSQGTTIRGKHSNGTIHDRSQYRAL...&lt;/protein&gt;</span> and antibody frameworks <span class="protein">&lt;antibody&gt;QVQLQQSGAELVKPGASVRMSCKASGYTFTNYNMYWVKQSPGQGLEWIGI...&lt;/antibody&gt;</span>, <span class="protein">&lt;antibody&gt;WGQGTTVTV&lt;/antibody&gt;</span>, create the CDR3 regions.
-<span class="response">Response:</span> <span class="antibody">&lt;antibody&gt;ARSEYGGYYAYAMDY&lt;/antibody&gt;</span>
+<span class="response">Response:</span> <span class="protein">&lt;antibody&gt;ARSEYGGYYAYAMDY&lt;/antibody&gt;</span>
 </code></pre>  
                     <p>NatureLM outputs the CDR3 regions. The figure visualized antigen–antibody complex confirms that the designed CDR region interacts effectively with the antigen.</p>
                     <figure style="text-align: center; margin: 20px 0;">
-                        <img src="static/images/antigen2antibody.png" alt="Antigen to Antibody" style="max-width: 75%; height: auto;">
+                        <img src="static/images/antigen2antibody_v2.png" alt="Antigen to Antibody" style="max-width: 100%; max-width: 400px; height: auto;">
                         <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
-                            Figure 4: Illustration of antigen to antibody interaction.
+                            Figure 4: Visualization of the antigen-antibody complex structure. The interaction is depicted using our internal tool to highlight the detailed binding relationship.
                         </figcaption>
                     </figure>
                     </div>
@@ -622,10 +622,10 @@
                     <p>
                         Guide RNA (gRNA) plays a critical role in CRISPR-Cas9 gene editing by directing the Cas9 nuclease to a specific genomic target site. A gRNA consists of two components: a crispr RNA (crRNA), which is approximately 20 nucleotides long and complementary to the target DNA sequence, and a tracrRNA, which binds to Cas9. Using NatureLM, we can efficiently design gRNA sequences with the following example:
                     </p>
-                    <pre><code>
-                    <span class="instruction">Instruction:</span> Generate a guide RNA for targeting the DNA sequence <span class="dna">&lt;dna&gt;GACTGGCACCAG...CCCTCGC&lt;/dna&gt;</span>
-                    <span class="instruction">Response:</span> &lt;rna&gt;AGACACAGCGGGUGCUCUGC&lt;/rna&gt;
-                    </code></pre>
+<pre><code>
+<span class="instruction">Instruction:</span> Generate a guide RNA for targeting the DNA sequence <span class="dna">&lt;dna&gt;GACTGGCACCAG...CCCTCGC&lt;/dna&gt;</span>
+<span class="instruction">Response:</span> <span class="rna">&lt;rna&gt;AGACACAGCGGGUGCUCUGC&lt;/rna&gt;</span>
+</code></pre>
                     <p>
                         A valid crRNA must meet the following criteria: 
                         <ol>
@@ -636,7 +636,7 @@
                         The example figure below demonstrates that the guide RNA designed by NatureLM satisfies all these criteria. Notably, NatureLM achieves an impressive accuracy of 95.7&#37; in designing valid gRNAs.
                     </p>
                     <figure style="text-align: center; margin: 20px 0;">
-                        <img src="static/images/grna.png" alt="Guide RNA Design" style="max-width: 100%; height: auto;"/>
+                        <img src="static/images/gRNA.svg" alt="Guide RNA Design" style="width: 100%; max-width: 600px; height: auto;"/>
                         <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
                             Figure 7: Visualization of the designed guide RNA (gRNA) structure.
                         </figcaption>
@@ -646,6 +646,9 @@
 
                     <!--- BELOW ARE OLD EXAMPLES-->
                     <div id="more" class="collapsible-section">
+
+                        <h3>More Examples</h3>
+                        <p>We summarize all the cases presented in the paper in the following charts. These charts provide an overview of the generated tasks we have worked on.</p>
                         <button class="collapse-btn"><h3>Click to show more examples</h3></button>
                         <div class="collapsible-content">
                             
