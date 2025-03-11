@@ -620,12 +620,17 @@
                     <div class="box">
                         <h4>Guide RNA design</h4>
                     <p>
-                        Guide RNA (gRNA) plays a critical role in CRISPR-Cas9 gene editing by directing the Cas9 nuclease to a specific genomic target site. A gRNA consists of two components: a crispr RNA (crRNA), which is approximately 20 nucleotides long and complementary to the target DNA sequence, and a tracrRNA, which binds to Cas9. Using NatureLM, we can efficiently design gRNA sequences with the following example:
+                        Guide RNA (gRNA) plays a critical role in CRISPR-Cas9 gene editing by directing the Cas9 nuclease to a specific genomic target site. A gRNA consists of two components: a crispr RNA (crRNA), which is approximately 20 nucleotides long and complementary to the target DNA sequence, and a tracrRNA, which binds to Cas9. 
+                        The crRNA garners more attention as it features a variable sequence critical for targeting specific DNA, whereas the tracrRNA has a more fixed role, primarily aiding in Cas9 binding.
+                        As an initial step in applying NatureLM to RNA design tasks, we can efficiently generate the crRNA component of gRNA sequences, as demonstrated in the following example:
                     </p>
 <pre><code>
 <span class="instruction">Instruction:</span> Generate a guide RNA for targeting the DNA sequence <span class="dna">&lt;dna&gt;GACTGGCACCAG...CCCTCGC&lt;/dna&gt;</span>
-<span class="instruction">Response:</span> <span class="rna">&lt;rna&gt;AGACACAGCGGGUGCUCUGC&lt;/rna&gt;</span>
+<span class="response">Response:</span> <span class="rna">&lt;rna&gt;AGATATCGGGCCCGCGACGG&lt;/rna&gt;</span>
 </code></pre>
+<!-- <span class="instruction">Instruction:</span> Generate a guide RNA for targeting the DNA sequence <span class="dna">&lt;dna&gt;GACTGGCACCAG...CCCTCGC&lt;/dna&gt;</span> -->
+<!-- <span class="instruction">Response:</span> <span class="rna">&lt;rna&gt;AGACACAGCGGGUGCUCUGC&lt;/rna&gt;</span> -->
+                    <p>The NatureLM's response is a sequence that targets the DNA region and includes the PAM sequence (Protospacer Adjacent Motif). To obtain the final crRNA, remove the 'NGG' PAM sequence, reverse complement the DNA sequence, and apply the central dogma principle by converting DNA into RNA (replacing all 'T' with 'U'). These quick and easy steps ensure the resulting crRNA is ready for use. </p>
                     <p>
                         A valid crRNA must meet the following criteria: 
                         <ol>
@@ -633,10 +638,13 @@
                             <li>Match a specific region in the provided DNA sequence.</li>
                             <li>Be followed by an "NGG" Protospacer Adjacent Motif (PAM) in the DNA sequence, where "N" represents any of the four standard nucleotide bases: adenine (A), cytosine (C), guanine (G), or thymine (T).</li>
                         </ol>
-                        The example figure below demonstrates that the guide RNA designed by NatureLM satisfies all these criteria. Notably, NatureLM achieves an impressive accuracy of 95.7&#37; in designing valid gRNAs.
+                        <!-- The example figure below demonstrates that the guide RNA designed by NatureLM satisfies all these criteria. Notably, NatureLM achieves an impressive accuracy of 95.7&#37; in designing valid gRNAs. -->
+                        The example figure below demonstrates that NatureLM can identify the target sequence for guide RNA, and the resulting guide RNA satisfies all the necessary criteria. With an impressive accuracy of 95.7&#37; in designing valid gRNAs, NatureLM demonstrates that we are already very close to fully automated RNA design.
+                        <!-- Notably, NatureLM achieves an impressive accuracy of 95.7&#37; in designing valid gRNAs. -->
+
                     </p>
                     <figure style="text-align: center; margin: 20px 0;">
-                        <img src="static/images/gRNA.svg" alt="Guide RNA Design" style="width: 100%; max-width: 600px; height: auto;"/>
+                        <img src="static/images/gRNA_drawing2.svg" alt="Guide RNA Design" style="width: 100%; max-width: 600px; height: auto;"/>
                         <figcaption style="margin-top: 10px; font-size: 14px; color: #555;">
                             Figure 7: Visualization of the designed guide RNA (gRNA) structure.
                         </figcaption>
