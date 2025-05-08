@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -52,7 +52,7 @@
             display: none; /* Initially hidden, JavaScript will show it */
         }
         .toc {
-            background-color: #f9f9f9;
+            background-color: #ffffff;
             border: 1px solid #ddd;
             padding: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -102,15 +102,15 @@
             overflow-x: auto; /* Keeps horizontal scrolling as a fallback for very long unbreakable content */
         }
         .instruction {
-            color: #d53f8c; /* Pink for instructions */
+            color: #bf387e; /* Pink for instructions */
             font-weight: bold;
         }
         .response {
-            color: #38a169; /* Green for responses */
+            color: #297a4f; /* Green for responses */
             font-weight: bold;
         }
         .protein {
-            color: #805ad5; /* Purple for protein sequences */
+            color: #7955ca; /* Purple for protein sequences */
             font-weight: bold;
         }
         .dna {
@@ -122,11 +122,11 @@
             font-weight: bold;
         }
         .mol {
-            color: #e53e3e; /* Red for molecule sequences */
+            color: #ce3737; /* Red for molecule sequences */
             font-weight: bold;
         }
         .frag {
-            color: #e53e3e; /* Red for fragments */
+            color: #ce3737; /* Red for fragments */
             font-weight: bold;
         }
         /* Styles for the collapsible section */
@@ -163,11 +163,28 @@
         .collapse-btn.active:after {
             content: '\2212'; /* Minus sign */
         }
-        
-        .collapsible-content {
+          .collapsible-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
+        }
+          /* High-contrast style for BibTeX citation */
+        .bibtex-code {
+            background-color: #f5f5f5;
+            color: #121212;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            line-height: 1.5;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+        
+        .bibtex-code code {
+            color: #121212;
+            background: none;
+            padding: 0;
+            font-weight: 500;
         }
     </style>
 
@@ -306,8 +323,8 @@
     <section class="hero is-small">
         <div class="hero-body">
             <div class="container">
-                <div style="text-align: center;">
-                    <img src="static/images/NLM-overview.png" style="width: 75%; height: auto;"/>
+                    <div style="text-align: center;">
+                        <img src="static/images/NLM-overview.png" alt="Overview illustration of the Nature Language Model" style="width: 75%; height: auto;"/>
                 </div>
             </div>
         </div>
@@ -421,7 +438,7 @@
                     <div class="box">
                         <h4>Protein to compound </h4>
                         <p>Designing small molecules based on an input protein sequence is an exciting and promising challenge in drug discovery, especially when structural information is unavailable or incomplete. NatureLM addresses this task by enabling both full molecule generation and molecular fragment generation, using the protein target sequence as input. This process, known as "sequence-to-compound," aims to directly design potential drug candidates by leveraging the protein's amino acid sequence to generate molecules with strong binding affinity and favorable properties. </p>
-<pre><code>
+<pre tabindex="0"><code>
 # Scenario 1: Complete molecule generation
 <span class="instruction">Instruction:</span> Produce a compound guided by the target <span class="protein">&lt;protein&gt;LALSLTADQMVSALL...SYDLLLEMLDAH&lt;/protein&gt;</span>
 <span class="response">Response:</span> <span class="mol">&lt;mol&gt;CC1=C(c2cccc(O)c2)C(c2ccc(I)cc2)Oc2ccc(O)cc21&lt;/mol&gt;</span>
@@ -503,8 +520,8 @@
                         <h4>Text-Driven Generation and Optimization </h4>
                         <p>Optimizing the binding affinity of a drug compound is a critical step in drug discovery, as it directly impacts the effectiveness and specificity of the compound for its biological target. Higher binding affinity often translates to improved efficacy and lower required dosages, which can reduce potential side effects. This process, however, is traditionally resource-intensive and time-consuming.</p>
                         <p>With NatureLM, researchers can streamline this process by interacting with the model using natural language. For example:</p>
-                        <pre><code>
-<span class="instruction">Instruction:</span> Improve the binding affinity on Uridine-cytidine kinase 2 of <span class="mol">&lt;mol&gt;Cc1ccc(-c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</span>
+                        <pre tabindex="0"><code>
+<span class="instruction">Instruction:</span> Improve the binding affinityon Uridine-cytidine kinase 2 of <span class="mol">&lt;mol&gt;Cc1ccc(-c2nc3c(c(SCC(=O)Nc4ccccc4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</span>
 <span class="response">Response:</span> <span class="mol">&lt;mol&gt;Cc1ccc(-c2nc3c(c(SCC(=O)Nc4cccc(C(=O)O)c4)n2)Cc2cccc(C)c2O3)cc1&lt;/mol&gt;</span>
                         </code></pre>
                         <p>NatureLM recommends the SMILES representations of candidate compounds with potentially improved binding affinity. Users can specify the desired number of candidates for generation and further evaluate them using methods such as docking, Free Energy Perturbation (FEP), Structure-Activity Relationship (SAR) analysis, or expert review. In two demonstrated cases, NatureLM successfully identified compounds that aligned with previously validated results from wet-lab experiments, highlighting its potential to propose viable candidates. Additionally, NatureLM can design entirely new compounds with superior docking scores, with further findings currently awaiting experimental validation.</p>
@@ -520,8 +537,8 @@
                     <div class="box">
                     <h4 id="protein-sol">(In)Soluble and stable protein design</h4>
                     <p>We can chat with NatureLM to design proteins:
-<pre><code>
-<span class="instruction">Instruction:</span> I require a stable protein sequence, kindly generate one.
+<pre tabindex="0"><code>
+<span class="instruction">Instruction:</span> I require a stable protein sequence,kindly generate one.
 <span class="instruction">Instruction:</span> Generate a soluble protein sequence.
 <span class="instruction">Instruction:</span> Produce a protein sequence that is not soluble.
 </code></pre>
@@ -540,8 +557,8 @@
                     <p>
                         Heme is an essential cofactor with critical roles in oxygen transport, electron transfer, and enzymatic activity. We use NatureLM to design proteins that can bind to heme:
                     </p>
-<pre><code>
-<span class="instruction">Instruction:</span> Design a heme-binding protein sequence.  
+<pre tabindex="0"><code>
+<span class="instruction">Instruction:</span> Design a heme-binding protein sequence.
 <span class="response">Response:</span> <span class="protein">&lt;protein&gt;MSAAEGAVVFSEEKEALVLK...&lt;/protein&gt;</span>
 <span class="instruction">Instruction:</span> Generate a protein that can bind to <span class="mol">&lt;mol&gt;[Fe+2].C=CC1=C(C)c2cc3[n-]c(cc4[n-]c(cc5nc(cc1n2)C(C)...&lt;/mol&gt;</span>
 <span class="response">Response:</span> <span class="protein">&lt;protein&gt;ETIGKRVFVHYCHGCHSQNALGI...&lt;/protein&gt;</span>
@@ -574,8 +591,8 @@
                     <div class="box">
                     <h4 id="protein-antibody">Antibody design</h4>
                     <p>Antigen-to-antibody design is a pivotal task in modern biomedical research, underpinning the development of targeted therapeutics and vaccines. By leveraging computational methods to predict and engineer the complementarity-determining regions (CDRs) of antibodies, researchers can create molecules that bind antigens with high specificity and affinity. NatureLM, for instance, enables the precise engineering of the CDR3 region of an antibody using the antigen sequence and the antibody’s framework. The example input below illustrates this application:</p>
-<pre><code>
-<span class="instruction">Instruction:</span> Using antigen <span class="protein">&lt;protein&gt;RDFNNLTKGLCTINSWHIYGKDNAVRIGEDSDVLVTREPYVSCDPDECRFYALSQGTTIRGKHSNGTIHDRSQYRAL...&lt;/protein&gt;</span> and antibody frameworks <span class="protein">&lt;antibody&gt;QVQLQQSGAELVKPGASVRMSCKASGYTFTNYNMYWVKQSPGQGLEWIGI...&lt;/antibody&gt;</span>, <span class="protein">&lt;antibody&gt;WGQGTTVTV&lt;/antibody&gt;</span>, create the CDR3 regions.
+<pre tabindex="0"><code>
+<span class="instruction">Instruction:</span> Using antigen<span class="protein">&lt;protein&gt;RDFNNLTKGLCTINSWHIYGKDNAVRIGEDSDVLVTREPYVSCDPDECRFYALSQGTTIRGKHSNGTIHDRSQYRAL...&lt;/protein&gt;</span> and antibody frameworks <span class="protein">&lt;antibody&gt;QVQLQQSGAELVKPGASVRMSCKASGYTFTNYNMYWVKQSPGQGLEWIGI...&lt;/antibody&gt;</span>, <span class="protein">&lt;antibody&gt;WGQGTTVTV&lt;/antibody&gt;</span>, create the CDR3 regions.
 <span class="response">Response:</span> <span class="protein">&lt;antibody&gt;ARSEYGGYYAYAMDY&lt;/antibody&gt;</span>
 </code></pre>  
                     <p>NatureLM outputs the CDR3 regions. The figure visualized antigen–antibody complex confirms that the designed CDR region interacts effectively with the antigen.</p>
@@ -592,8 +609,8 @@
                     <p>NatureLM enables researchers to generate materials with specified properties by using natural language instructions. This text-to-material approach is particularly promising as it streamlines the discovery process, allowing researchers to explore vast design spaces more efficiently than traditional trial-and-error methods. Below, we present two examples that demonstrate its capabilities in material composition and property </p>
                     <h4>Generating a material with specified elements</h4>
                     <p>In the first example, we prompt NatureLM to draft a material that includes specific elements.</p>
-<pre><code>
-<span class="instruction">Instruction:</span>  Draft a material that includes Sr, Nd, Bi, O. 
+<pre tabindex="0"><code>
+<span class="instruction">Instruction:</span>  Draft a materialthat includes Sr, Nd, Bi, O. 
 <span class="response">Response:</span> <span class="material">&lt;material&gt; Sr Sr Sr Sr Nd Nd Bi Bi O O O O O O O O O O O O &lt;sg14&gt; &lt;/material&gt;</span>
 </code></pre>
                     <p>This output specifies both the composition of the material (4 Sr, 2 Nd, 2 Bi, and 12 O per unit cell) and its space group (14 for this example). To further enhance its capabilities, we fine-tuned the 1B version of NatureLM, transforming it into a material structure generator referred to as NatureLM-Mat3D. NatureLM-Mat3D takes the composition and space group as input and autoregressively outputs the lattice parameters, followed by the atomic coordinates within that lattice.</p>
@@ -606,14 +623,14 @@
                     <div class="box">
                         <h4>Generating a Material with a Specified Bulk Modulus</h4>
                         <p>Materials with an ultra-high bulk modulus are highly valued for their exceptional stiffness and incompressibility, making them critical for applications in extreme environments, industrial tools, and advanced engineering. To test NatureLM's ability to generate such materials, we tasked it with designing a material with a desired bulk modulus of 400 GPa, a value comparable to the stiffness of diamond:</p>
-<pre><code>
-<span class="instruction">Instruction:</span>  Provide the composition for a material designed to have a desired bulk modulus of 400 GPa. 
+<pre tabindex="0"><code>
+<span class="instruction">Instruction:</span>  Provide the compositionfor a material designed to have a desired bulk modulus of 400 GPa. 
 </code></pre>                        
                         <p>Similar to the evaluation pipeline used in the first user application, we begin by using NatureLM-Mat3D to predict the 3D atomic structure of the material. We then employ MatterSim to estimate the e_hull and bulk modulus. We manually identified cases where MatterSim predicted bulk modulus values within a 5 GPa range of the target (400Gpa here). Two such cases were selected for further validation using density functional theory (DFT) calculations.</p>
-<pre><code>
+<pre tabindex="0"><code>
 <span class="response">Response: </span><span class="material">&lt;material&gt; Os Os Os Re &lt;sg187&gt; &lt;/material&gt;</span>
 <span class="response">Response: </span><span class="material">&lt;material&gt; Re Re Re C &lt;sg187&gt; &lt;/material&gt;</span>
-</code></pre>  
+</code></pre>
                         <p> The DFT results revealed bulk modulus values of 390 GPa and 394 GPa, which closely align with the target value of 400 GPa. Beyond achieving the bulk modulus target, the two generated structures were confirmed to be novel compared to those available in the Materials Project database. This novelty underscores NatureLM's potential for discovering new materials with exceptional mechanical properties, thereby broadening the scope of material design and innovation.</p>
                         <figure>
                             <img src="static/images/high_bulk.svg" alt="High Bulk Material Diagram" />
@@ -631,8 +648,8 @@
                         The crRNA garners more attention as it features a variable sequence critical for targeting specific DNA, whereas the tracrRNA has a more fixed role, primarily aiding in Cas9 binding.
                         As an initial step in applying NatureLM to RNA design tasks, we can efficiently generate the crRNA component of gRNA sequences, as demonstrated in the following example:
                     </p>
-<pre><code>
-<span class="instruction">Instruction:</span> Generate a guide RNA for targeting the DNA sequence <span class="dna">&lt;dna&gt;GACTGGCACCAG...CCCTCGC&lt;/dna&gt;</span>
+<pre tabindex="0"><code>
+<span class="instruction">Instruction:</span> Generate a guide RNAfor targeting the DNA sequence <span class="dna">&lt;dna&gt;GACTGGCACCAG...CCCTCGC&lt;/dna&gt;</span>
 <span class="response">Response:</span> <span class="rna">&lt;rna&gt;AGATATCGGGCCCGCGACGG&lt;/rna&gt;</span>
 </code></pre>
 <!-- <span class="instruction">Instruction:</span> Generate a guide RNA for targeting the DNA sequence <span class="dna">&lt;dna&gt;GACTGGCACCAG...CCCTCGC&lt;/dna&gt;</span> -->
@@ -759,11 +776,10 @@
     </section>
 
 
-    <!--BibTex citation -->
-    <section class="section" id="BibTeX">
+    <!--BibTex citation -->    <section class="section" id="BibTeX">
         <div class="container is-max-desktop content">
             <h2 class="title">BibTeX</h2>
-            <pre><code>@misc{NatureLM2025,
+            <pre tabindex="0" class="bibtex-code"><code>@misc{NatureLM2025,
     title={Nature Language Model: Deciphering the Language of Nature for Scientific Discovery}, 
     author={Yingce Xia and Peiran Jin and Shufang Xie and Liang He and Chuan Cao and Renqian Luo and Guoqing Liu and Yue Wang and Zequn Liu and Yuan-Jyue Chen and Zekun Guo and Yeqi Bai and Pan Deng and Yaosen Min and Ziheng Lu and Hongxia Hao and Han Yang and Jielan Li and Chang Liu and Jia Zhang and Jianwei Zhu and Ran Bi and Kehan Wu and Wei Zhang and Kaiyuan Gao and Qizhi Pei and Qian Wang and Xixian Liu and Yanting Li and Houtian Zhu and Yeqing Lu and Mingqian Ma and Zun Wang and Tian Xie and Krzysztof Maziarz and Marwin Segler and Zhao Yang and Zilong Chen and Yu Shi and Shuxin Zheng and Lijun Wu and Chen Hu and Peggy Dai and Tie-Yan Liu and Haiguang Liu and Tao Qin},
     year={2025},
@@ -783,14 +799,19 @@
                 <div class="column is-8">
                     <div class="content">
 
-                        <p>
-                            This page was built using the <a
-                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
-                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
-                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+        <p>
+            This page was built using the <a
+                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                target="_blank"
+                style="text-decoration: underline; color: #2f6dd1;"
+            >Academic Project Page Template</a> which was adopted from the <a
+                href="https://nerfies.github.io"
+                target="_blank"
+                style="text-decoration: underline; color: #2f6dd1;"
+            >Nerfies</a> project page.
                             You are free to borrow the source code of this website, we just ask that you link back to
                             this page in the footer. <br> This website is licensed under a <a rel="license"
-                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="text-decoration: underline; color: #2f6dd1;">Creative
                                 Commons Attribution-ShareAlike 4.0 International License</a>.
                         </p>
 
